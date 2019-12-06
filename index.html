@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./script/script.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="style/nav.css">
+</head>
+<body>
+
+   <nav id="burgerWrapper">
+      <div id="burger">
+          <p id="burger1"></p>
+          <p id="burger2"></p>
+          <p id="burger3"></p>
+      </div>
+      <div id="nav">
+        <div id="textWrapper">
+          <p id="entry">Einträge</p>
+          <p id="login">Login</p>
+          <p id="Createaccount">Account erstellen</p>
+        </div>
+      </div>
+
+    </nav>
+    
+    <div id="disableNav"></div>
+
+  <div id="mailword">
+    <input type="text" placeholder="Email-Adresse" id="addEmail">
+    <input type="password" placeholder="Passwort" id="addPassword">
+  </div>
+  <div id="signup">
+    <button id="signup">Sign up </button>
+  </div>
+  <div id="signin">
+    <button id="signin">Sign in </button>
+  </div>
+  <div id="signout">
+    <button id="signout">Sign out</button>
+  </div>
+    <p id="emailoutput"></p>
+    <p id="passwordoutput"></p>
+
+  <div id="createbirthday">
+    <input type="text" placeholder="Name" id="addBirthdayName" value="Jonas">
+    <input id ="addBirthday" type="date" value="2000-01-01">
+    <button id="addBirthDate">Create</button>
+  </div>
+    
+  <!-- <button onclick="all()">Hallo</button> -->
+    <!-- <p id=birthdayOutput></p>
+    <p id="nameOutput"></p> --> 
+
+    <!--<p id ="birthdayDate"></p>
+    <p id ="birthdayName"></p>-->
+
+
+</body>
+</html>
