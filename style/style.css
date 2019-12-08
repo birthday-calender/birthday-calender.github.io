@@ -1,6 +1,6 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background: cornflowerblue;
+    background: white;
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -9,44 +9,108 @@ body {
     padding: 0;
 }
 
-#mailword {
-    display: none;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: baseline;
-    align-items: flex-start;
-
-    width: 40vw;
-    height: 5vh;
-    margin-top: 7%;
+input[type="text"], input[type='password'] {
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: solid lightgray 1.5px;
+    transition: 200ms border-bottom ease-in-out;
 }
+
+/* wenn man hinein klickt ändert sich die Farbe */
+input:focus[type="text"], input:focus[type='password'] {
+    border-bottom: solid cornflowerblue 1.5px;
+}
+
+#mailword {
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* align-items: flex-start;  */
+    /* background-color: brown; */
+
+    font-size: 1.2em;
+    width: 100vw;
+    height: 40vh;
+}
+
+#spanmail {
+    /* display: none; */
+    width: 65vw;
+    height: 2vh;
+    justify-content: flex-start;
+    position: fixed;
+    top: 20%;
+    /* font-size: 1.2em; */
+}
+
 
 #addEmail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40vw;
-    height: 5vh;
-    display: none;
+    /* display: flex; */
+    /* justify-content: flex-start; */
+    /* align-items: center; */
+    width: 65%;
+    /* height: 5vh; */
+    position: fixed;
+    /* left: 15%; */
+    top: 24.5%;
+    /* display: none; */
 }
 
+#spanpassword {
+    /* display: none; */
+    width: 65vw;
+    height: 2vh;
+    justify-content: flex-start;
+    position: fixed;
+    top: 30%;
+}
 #addPassword {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
-    width: 40vw;
-    height: 5vh;
+    width: 65%;
+    /* height: 5vh; */
+    position: fixed;
+    /* left: 15%; */
+    top: 34.5%;
+    /* margin: 2vh 0 0 0; */
 
-    display: none;
+    /* display: none; */
 }
+
+#buttonWrapper {
+    width: 80%;
+    height: 10vh;
+    left: 10vw;
+    margin: 2vh 0;
+    padding: 0vh 1.5vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    /* background-color: brown; */
+}
+
+#buttonWrapper button {
+    padding: .75vw;
+    border: solid #404040 1.5px;
+    border-radius: 10px;
+    background: #D3D3D3;
+    outline: none;
+    color: black;
+    cursor: pointer;
+    font-size: 1.05em;
+}
+
 #signup {
     display: none;
-    width: 7vw;
-    height: 3vh;
 }
 
 #signin {
-    display: none;
+    /* display: none; */
 }
 
 #signout {
@@ -57,7 +121,7 @@ body {
     display: none;
 } 
 
-#all {
+/* #all {
     display: block;
     width: 30vw;
     height: 5vh;
@@ -65,4 +129,55 @@ body {
     justify-content: right;
     align-items: flex-end;
     right: 0%;
+} */
+
+#contentWrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#signInHeadLine {
+    /* display: none; */
+    width: 80%;
+    position: fixed;
+    left: 10%;
+    top: 4.5%;
+    justify-content: center;
+}
+
+#signUpHeadline {
+    display: none;
+    width: 80%;
+    position: fixed;
+    left: 10%;
+    top: 4.5%;
+    justify-content: center;
+}
+
+#ShowEntriesHeadLine {
+    display: none;
+    width: 80%;
+    position: fixed;
+    left: 10%;
+    top: 4.5;
+    justify-content: center;
+}
+/* 
+#regist {
+    width: 100vw;
+    height: 50vh;
+    justify-content: flex-start;
+    align-items: baseline;
+    background-color: violet;
+    margin-top: 40vh;
+    display: flex;
+} */
