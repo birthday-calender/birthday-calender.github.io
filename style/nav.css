@@ -48,7 +48,7 @@ body {
 
 #nav {
     height: 100vh;
-    background-color: transparent;
+    background-color: white;
     width: 80vw;
     margin: 0 auto;
     box-shadow: 7px 0px 5px 1px rgba(189,189,189,0.5);

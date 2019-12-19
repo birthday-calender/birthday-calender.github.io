@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./style/style.css">
   <link rel="stylesheet" href="style/nav.css">
   <script src="./script/script.js"></script>
+  <script src="script/account.js"></script>
 </head>
 <body>
   <!-- Burger Menu-->
@@ -23,6 +24,7 @@
     </div>
     <div id="nav">
       <div id="textWrapper">
+        <p id="statusOutput"></p>
         <p id="entry">Einträge</p>
         <p id="login">Login</p>
         <p id="createaccount">Account erstellen</p>
@@ -33,5 +35,48 @@
   <!-- Burger Menu enable -->
   <div id="disableNav"></div>
   
+  <div id="ContentWrapper">
+    <!-- Anmeldung -->
+    <div id="contentAnmelden">
+      <h1 id="contentAnmeldenHeadLine">Anmelden</h1>
+      <span id="spanLogInMail">Email</span>
+      <input type="text" placeholder="user@gmail.com" id="addSignInMail" class="addMail">
+      <span id="spanLogInPassword">Passwort</span>
+      <input type="password" id="addSignInPassword" class="addPassword">
+      <button class="buttonWrapper" id="signin">Sign in</button>
+    </div>
+
+    <!-- Registrieren -->
+    <div id="contentRegistrieren">
+      <h1 id="contentRegistrierenHeadLine">Registrieren</h1>
+      <span id="spanLogUpMail">Email</span>
+      <input type="text" placeholder="user@gmail.com" id="addSignUpMail" class="addMail">
+      <span id="spanLogUpPassword">Passwort</span>
+      <input type="password" id="addSignUpPassword" class="addPassword">
+      <p id="errormessageSignUp"></p>
+      <button class="buttonWrapper" id="signup">Signup</button>
+    </div>
+
+    <!-- Eintrag erstellen -->
+    <div id="contentEintragErstellen">
+      <h1 id="contentEintragErstellenHeadLine">Eintrag erstellen</h1>
+      <input type="text" placeholder="Name" id="addBirthdayName">
+      <input type="date" value="2000-01-01" id="addBirthdayDate">
+      <button class="buttonWrapper" id="addBirthDate">Erstellen</button>
+    </div>
+
+    <!-- Einträge anschauen -->
+    <div id="contentEintragAnschauen">
+      <h1 id="contentEintragAnschauenHeadLine"></h1>
+
+    </div>
+
+    <!-- Ausloggen -->
+    <button class="buttonWrapper" id="signout">Signout</button>
+  </div>
+
+  <footer id="footer">
+   
+  </footer>
 </body>
 </html>
