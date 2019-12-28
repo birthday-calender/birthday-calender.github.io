@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./style/style.css">
   <link rel="stylesheet" href="style/nav.css">
   <script src="./script/script.js"></script>
-  <script src="script/account.js"></script>
+  <!-- <script src="script/account.js"></script> -->
 </head>
 <body>
   <!-- Burger Menu-->
@@ -37,42 +37,75 @@
   
   <div id="ContentWrapper">
     <!-- Anmeldung -->
-    <div id="contentAnmelden">
-      <h1 id="contentAnmeldenHeadLine">Anmelden</h1>
-      <span id="spanLogInMail">Email</span>
-      <input type="text" placeholder="user@gmail.com" id="addSignInMail" class="addMail">
-      <span id="spanLogInPassword">Passwort</span>
-      <input type="password" id="addSignInPassword" class="addPassword">
-      <button class="buttonWrapper" id="signin">Sign in</button>
+    <div id="signInWrapper">
+      <h1>Anmelden</h1>
+        
+      <div class="continueWithEmail">
+        <input type="text" placeholder="E-Mail Adresse" id="emailIn">
+        <p id="emInFeedback"></p>
+        <input type="password" placeholder="Passwort" id="passwordIn">
+        <p id="pwInFeedback"></p>
+      </div>
+
+      <div class="btnWrapper">
+        <div class="button" id="signInBtn">
+          <span id="signInBtnText">Anmelden</span>
+        
+          <div id="signInloader" class="hide">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p id="passwordForgot">Passwort vergessen?</p>
+      <p id="goToSignUp">kein Account? Registrieren!</p>
     </div>
 
-    <!-- Registrieren -->
-    <div id="contentRegistrieren">
-      <h1 id="contentRegistrierenHeadLine">Registrieren</h1>
-      <span id="spanLogUpMail">Email</span>
-      <input type="text" placeholder="user@gmail.com" id="addSignUpMail" class="addMail">
-      <span id="spanLogUpPassword">Passwort</span>
-      <input type="password" id="addSignUpPassword" class="addPassword">
-      <p id="errormessageSignUp"></p>
-      <button class="buttonWrapper" id="signup">Signup</button>
+    <div id="signUpWrapper">
+      <h1>Registrieren</h1>
+
+      <div class="continueWithEmail">
+        <input type="text" placeholder="E-Mail Adresse" id="emailUp">
+        <p id="emUpFeedback"></p>
+        <input type="password" placeholder="Passwort" id="passwordUp">
+        <p id="pwUpFeedback"></p>
+      </div>
+      
+      <div class="btnWrapper">
+        <div class="button" id="signUpBtn">
+          <span id="signUpBtnText">Registrieren</span>
+
+          <div id="signUploader" class="hide">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <p id="goToSignIn">bereits registriert? Anmelden!</p>
     </div>
 
-    <!-- Eintrag erstellen -->
-    <div id="contentEintragErstellen">
-      <h1 id="contentEintragErstellenHeadLine">Eintrag erstellen</h1>
-      <input type="text" placeholder="Name" id="addBirthdayName">
-      <input type="date" value="2000-01-01" id="addBirthdayDate">
-      <button class="buttonWrapper" id="addBirthDate">Erstellen</button>
+
+    <div class="showEntries">
+      <h1>Geburtstage</h1>
+      <div></div>
     </div>
 
-    <!-- Einträge anschauen -->
-    <div id="contentEintragAnschauen">
-      <h1 id="contentEintragAnschauenHeadLine"></h1>
 
-    </div>
+
+
 
     <!-- Ausloggen -->
-    <button class="buttonWrapper" id="signout">Signout</button>
+    <!-- <button class="buttonWrapper" id="signout">Signout</button> -->
   </div>
 
   <footer id="footer">
