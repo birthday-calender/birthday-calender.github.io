@@ -53,6 +53,57 @@ window.addEventListener('load', () => {
         }, 310);
     });
 
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          printEntries(user.uid);
+    
+        //   theme.click();
+        //   homeIcon.click();
+        //   hideNav();
+    
+    //       changeDisplayProperty('kontoError', 'none');
+    //       changeDisplayProperty('kontoError', 'none');
+    //       changeDisplayProperty('user', 'none');
+    //       changeDisplayProperty('signOut', 'block');
+    //       changeDisplayProperty('addWrapper', 'block');
+    //       changeDisplayProperty('formWrapper', 'block');
+    
+    //       document.getElementById('addFDB').textContent = '';
+    
+    //       // if (entryWrapper.childNodes.length === 0) document.getElementById('entryFDB').textContent = 'Keine Einträge verfügbar.';
+    //       if (deletedEntriesWrapper.childNodes.length === 0) document.getElementById('deletedFDB').textContent = 'Keine Einträge verfügbar.';
+    
+    //       firebase.database().ref('users/' + user.uid + '/userdata').once('value').then((snapshot) => {
+    //         document.getElementById('usernameField').textContent = snapshot.val().username;
+    //       });
+    
+    //       firebase.database().ref(`users/${user.uid}/settings/theme`).once('value').then((snapshot) => {
+    //         document.getElementById(`${snapshot.val().color}Theme`).getElementsByTagName('i')[0].style.display = 'block';
+    //         changeTheme(snapshot.val().color, snapshot.val().hex);
+    //       });
+    //     } else {
+    //       toggleFullScreenContent();
+    //       changeDisplayProperty('user', 'block');
+    //       changeDisplayProperty('signOut', 'none');
+    
+    //       let patternWrapper = document.getElementById('entryWrapper');
+    //       while (patternWrapper.firstChild) patternWrapper.removeChild(patternWrapper.firstChild);
+    
+    //       patternWrapper = document.getElementById('themeContent');
+    //       while (patternWrapper.firstChild) patternWrapper.removeChild(patternWrapper.firstChild);
+    //       document.getElementById('themeFDB').textContent = 'Sie müssen eingeloggt sein um dieses Feature nutzen zu können.';
+    
+    //       // document.getElementById('entryFDB').textContent = 'Keine Einträge verfügbar.';
+    //       document.getElementById('addFDB').textContent = 'Sie müssen angemeldet sein um Einträge erstellen zu können.';
+    //       document.getElementById('usernameField').textContent = 'nicht eingeloggt.';
+    
+    //       changeDisplayProperty('addWrapper', 'none');
+    //       changeDisplayProperty('formWrapper', 'none');
+    //       changeDisplayProperty('kontoError', 'block');
+        }
+      });
+
+
     signInButton.addEventListener('click', () => {
         const email = document.getElementById('emailIn');
         const password = document.getElementById('passwordIn');
@@ -380,6 +431,72 @@ window.addEventListener('load', () => {
   //   statusOutput.textContent = "Ausgelogt";
   // })
 
+  function printEntries(userId) {
+    let content;
+    let entries = [];
+
+    const patternWrapper = document.getElementById('entryWrapper');
+    while (patternWrapper.firstChild) patternWrapper.removeChild(patternWrapper.firstChild);
+
+    firebase.database().ref('birthdays' + userId + '/entries').once('value').then((snapshot) => {
+
+      content = snapshot.val();
+
+      // Fill Array with Database Content
+      for (const index in content) {
+        entries.push([]);
+        for (const index2 in content[index]) {
+          entries[entries.length - 1].push(content[index][index2]);
+        }
+      }
+
+      // Convert Date Format
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = 0; j < entries[i].length; j++) {
+          if (entries[i][j].date.includes('-')) {
+            const parts = entries[i][j].date.split('-');
+            entries[i][j].date = `${parts[2]}.${parts[1]}.${parts[0]}`;
+          }
+        }
+      }
+
+      console.log(entries);
+
+      for (let i = 0; i < entries.length; i++) {
+        const contentWrapper = document.getElementById('entryWrapper');
+        const newPerson = document.createElement('div');
+
+        const header = document.createElement('div');
+        const headerName = document.createElement('h2');
+        const headerIconWrapper = document.createElement('div');
+        const headerTotalPrice = document.createElement('p');
+        const headerIcon = document.createElement('i');
+
+        headerName.textContent = entries[i][0].name;
+        headerTotalPrice.textContent = '23,50€';
+        headerIcon.setAttribute('class', 'fas fa-angle-right');
+
+        header.addEventListener('click', () => {
+          // newPerson.classList.toggle('makeBigger');
+          document.getElementById('contentWrapper').classList.toggle('showDetailed');
+        });
+
+        headerIconWrapper.appendChild(headerTotalPrice);
+        headerIconWrapper.appendChild(headerIcon);
+
+        header.appendChild(headerName);
+        header.appendChild(headerIconWrapper);
+
+        header.setAttribute('class', 'personHeader');
+
+        newPerson.appendChild(header);
+        newPerson.setAttribute('class', 'person');
+
+
+        contentWrapper.appendChild(newPerson);
+      }
+    });
+  }
 
   
 })

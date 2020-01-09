@@ -71,10 +71,16 @@ body {
 
 #signInWrapper {
     display: none;
+    
 }
 
 #signUpWrapper {
-  display: none;
+  /* display: none; */
+  /* position: fixed; */
+}
+
+#contentWrapper {
+    display: none;
 }
 
 /* Falsche Eingaben */
