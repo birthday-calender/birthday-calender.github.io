@@ -46,7 +46,7 @@ body {
     align-items: center;
   }
   
-  input {
+input {
     outline: none;
     border: none;
     border-bottom: lightgray 5px solid;
@@ -58,15 +58,15 @@ body {
     cursor: text;
     margin: 0 0 1.5% 0;
     padding: 0;
-  }
+}
   
   /* #accountWrapper p, #plusWrapper p, #deletedWrapper p, #kontoWrapper p, #themeWrapper p {
     font-size: 250%;
   } */
   
-  input:focus {
+input:focus {
     border-bottom: #5ac878 5px solid;
-  }
+}
 
 
 #signInWrapper {
@@ -75,12 +75,12 @@ body {
 }
 
 #signUpWrapper {
-  /* display: none; */
+  display: none;
   /* position: fixed; */
 }
 
 #contentWrapper {
-    display: none;
+    display: block;
 }
 
 /* Falsche Eingaben */
@@ -90,3 +90,7 @@ body {
   color: red;
 }
 
+.entry {
+  background-color: red;
+  
+}

@@ -11,7 +11,18 @@ window.addEventListener('load', () => {
   };
   
   firebase.initializeApp(firebaseConfig);
+    // let data = {1575110734831: {
+    //     birthdate: "2003-03-06",
+    //     key: 1575110734831, 
+    //     name: "Jonas",
+    // },
+    // 1575152163583: {
+    //     birthdate: "2003-19-05",
+    //     key: 1575152163583,
+    //     name: "Michael"} 
+    // };
 
+    
 //   const signup = document.getElementById('signup');
 //   const signin = document.getElementById('signin');
   const signout = document.getElementById('signout')
@@ -55,51 +66,13 @@ window.addEventListener('load', () => {
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          printEntries(user.uid);
-    
-        //   theme.click();
-        //   homeIcon.click();
-        //   hideNav();
-    
-    //       changeDisplayProperty('kontoError', 'none');
-    //       changeDisplayProperty('kontoError', 'none');
-    //       changeDisplayProperty('user', 'none');
-    //       changeDisplayProperty('signOut', 'block');
-    //       changeDisplayProperty('addWrapper', 'block');
-    //       changeDisplayProperty('formWrapper', 'block');
-    
-    //       document.getElementById('addFDB').textContent = '';
-    
-    //       // if (entryWrapper.childNodes.length === 0) document.getElementById('entryFDB').textContent = 'Keine Einträge verfügbar.';
-    //       if (deletedEntriesWrapper.childNodes.length === 0) document.getElementById('deletedFDB').textContent = 'Keine Einträge verfügbar.';
-    
-    //       firebase.database().ref('users/' + user.uid + '/userdata').once('value').then((snapshot) => {
-    //         document.getElementById('usernameField').textContent = snapshot.val().username;
-    //       });
-    
-    //       firebase.database().ref(`users/${user.uid}/settings/theme`).once('value').then((snapshot) => {
-    //         document.getElementById(`${snapshot.val().color}Theme`).getElementsByTagName('i')[0].style.display = 'block';
-    //         changeTheme(snapshot.val().color, snapshot.val().hex);
-    //       });
-    //     } else {
-    //       toggleFullScreenContent();
-    //       changeDisplayProperty('user', 'block');
-    //       changeDisplayProperty('signOut', 'none');
-    
-    //       let patternWrapper = document.getElementById('entryWrapper');
-    //       while (patternWrapper.firstChild) patternWrapper.removeChild(patternWrapper.firstChild);
-    
-    //       patternWrapper = document.getElementById('themeContent');
-    //       while (patternWrapper.firstChild) patternWrapper.removeChild(patternWrapper.firstChild);
-    //       document.getElementById('themeFDB').textContent = 'Sie müssen eingeloggt sein um dieses Feature nutzen zu können.';
-    
-    //       // document.getElementById('entryFDB').textContent = 'Keine Einträge verfügbar.';
-    //       document.getElementById('addFDB').textContent = 'Sie müssen angemeldet sein um Einträge erstellen zu können.';
-    //       document.getElementById('usernameField').textContent = 'nicht eingeloggt.';
-    
-    //       changeDisplayProperty('addWrapper', 'none');
-    //       changeDisplayProperty('formWrapper', 'none');
-    //       changeDisplayProperty('kontoError', 'block');
+            firebase.database().ref(`users/${firebase.auth().currentUser.uid}/birthdates`).once('value').then((snapshot) => {
+                console.table(snapshot.val());
+                printEntries(snapshot.val());
+            });
+        
+        
+        //   printEntries(user.uid);
         }
       });
 
@@ -386,116 +359,38 @@ window.addEventListener('load', () => {
   })
 
   // Nav enable
-  disableNav.addEventListener('click', () => {
+  disableNav.addEventListener('click', () => { 
     if (document.getElementById('nav').style.left === '0px') {
       menuburger.click();
     }
   });
 
-  // signup.addEventListener('click', () => {
-  //   const email = document.getElementById('addSignUpMail');
-  //   const password = document.getElementById('addSignUpPassword');
-  //   const statusOutput = document.getElementById('statusOutput');
+  
 
-  //   const promise = firebase.auth().createUserWithEmailAndPassword(email.value, password.value);
+  function printEntries(data) {
+    const entries = [];
+    const entryWrapper = document.getElementById('entryWrapper');
 
-  //   if(email.value === '') {
-  //     // errormessageSignUp.textContent = 'Es dürfen keine Felder leer bleiben'
-  //   }
+    for (const index in data) {
+        entries.push(data[index]);
+    }
 
+    for (let i = 0; i < entries.length; i++) {
+        const newEntry = document.createElement('div');
+        const name = document.createElement('h1');
+        const birthdate = document.createElement('p');
+        
+        name.textContent = entries[i].name;
+        birthdate.textContent = entries[i].birthdate; 
 
-  //   promise.then(() => {
-  //     statusOutput.textContent = "Eingelogt";
+        newEntry.setAttribute('class', 'entry');
 
-  //     firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
-  //       email: firebase.auth().currentUser.email 
-  //     })
-  //   })
-  // })
+        newEntry.appendChild(name);
+        newEntry.appendChild(birthdate);
+        entryWrapper.appendChild(newEntry);
+    }
 
-  // signin.addEventListener('click', () => {
-  //   const email = document.getElementById('addSignInMail');
-  //   const password = document.getElementById('addSignInPassword');
-  //   const statusOutput = document.getElementById('statusOutput');
-
-  //   const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value);
-
-  //   promise.then(() => {
-  //     statusOutput.textContent = "Eingeloggt";
-  //   })
-  // })
-
-  // signout.addEventListener('click', () => {
-  //   const promise = firebase.auth().signOut();
-
-  //   statusOutput.textContent = "Ausgelogt";
-  // })
-
-  function printEntries(userId) {
-    let content;
-    let entries = [];
-
-    const patternWrapper = document.getElementById('entryWrapper');
-    while (patternWrapper.firstChild) patternWrapper.removeChild(patternWrapper.firstChild);
-
-    firebase.database().ref('birthdays' + userId + '/entries').once('value').then((snapshot) => {
-
-      content = snapshot.val();
-
-      // Fill Array with Database Content
-      for (const index in content) {
-        entries.push([]);
-        for (const index2 in content[index]) {
-          entries[entries.length - 1].push(content[index][index2]);
-        }
-      }
-
-      // Convert Date Format
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = 0; j < entries[i].length; j++) {
-          if (entries[i][j].date.includes('-')) {
-            const parts = entries[i][j].date.split('-');
-            entries[i][j].date = `${parts[2]}.${parts[1]}.${parts[0]}`;
-          }
-        }
-      }
-
-      console.log(entries);
-
-      for (let i = 0; i < entries.length; i++) {
-        const contentWrapper = document.getElementById('entryWrapper');
-        const newPerson = document.createElement('div');
-
-        const header = document.createElement('div');
-        const headerName = document.createElement('h2');
-        const headerIconWrapper = document.createElement('div');
-        const headerTotalPrice = document.createElement('p');
-        const headerIcon = document.createElement('i');
-
-        headerName.textContent = entries[i][0].name;
-        headerTotalPrice.textContent = '23,50€';
-        headerIcon.setAttribute('class', 'fas fa-angle-right');
-
-        header.addEventListener('click', () => {
-          // newPerson.classList.toggle('makeBigger');
-          document.getElementById('contentWrapper').classList.toggle('showDetailed');
-        });
-
-        headerIconWrapper.appendChild(headerTotalPrice);
-        headerIconWrapper.appendChild(headerIcon);
-
-        header.appendChild(headerName);
-        header.appendChild(headerIconWrapper);
-
-        header.setAttribute('class', 'personHeader');
-
-        newPerson.appendChild(header);
-        newPerson.setAttribute('class', 'person');
-
-
-        contentWrapper.appendChild(newPerson);
-      }
-    });
+    
   }
 
   
