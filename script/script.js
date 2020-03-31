@@ -50,6 +50,11 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             clearSignIn();
         }, 310);
+
+        hideAll();
+        changeDisplayProperty('contentWrapperall', 'block');
+        changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('signUpWrapper', 'block');
     });
 
     goToSignIn.addEventListener('click', () => {
@@ -62,6 +67,12 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             clearSignUp();
         }, 310);
+
+        
+        hideAll();
+        changeDisplayProperty('contentWrapperall', 'block');
+        changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('signInWrapper', 'block');
     });
 
     firebase.auth().onAuthStateChanged((user) => {
@@ -365,6 +376,34 @@ window.addEventListener('load', () => {
     }
   });
 
+  entries.addEventListener('click', () => {
+      hideAll();
+      changeDisplayProperty('contentWrapperall', 'block');
+      changeDisplayProperty('menuburgerWrapper', 'block');
+      changeDisplayProperty('contentWrapper', 'block');
+  })
+
+  login.addEventListener('click', () => {
+      hideAll();
+      changeDisplayProperty('contentWrapperall', 'block');
+      changeDisplayProperty('menuburgerWrapper', 'block');
+      changeDisplayProperty('signInWrapper', 'block');
+  })
+
+  createaccount.addEventListener('click', () => {
+      hideAll();
+      changeDisplayProperty('contentWrapperall', 'block');
+      changeDisplayProperty('menuburgerWrapper', 'block');
+      changeDisplayProperty('signUpWrapper', 'block');
+  })
+
+//   menuburgerWrapper'),
+//           document.getElementById('disableNav'),
+//         //   document.getElementById('contentWrapperall'),
+//           document.getElementById('signInWrapper'),
+//           document.getElementById('signUpWrapper'),
+//           document.getElementById('contentWrapper')
+
   
 
   function printEntries(data) {
@@ -377,11 +416,11 @@ window.addEventListener('load', () => {
 
     for (let i = 0; i < entries.length; i++) {
         const newEntry = document.createElement('div');
-        const name = document.createElement('h1');
+        const name = document.createElement('p');
         const birthdate = document.createElement('p');
         
-        name.textContent = entries[i].name;
-        birthdate.textContent = entries[i].birthdate; 
+        name.textContent = "Geburtstag: " + entries[i].name;
+        birthdate.textContent = "Datum: " + entries[i].birthdate; 
 
         newEntry.setAttribute('class', 'entry');
 
@@ -409,4 +448,23 @@ function validateEmail(email) {
   } else {
       return false;
   }
+}
+
+function changeDisplayProperty(id, property) {
+    document.getElementById(id).style.display = property;
+}
+
+// Funktion damit man alle Element nicht sichbar sind
+function hideAll() {
+    const elements = [document.getElementById('menuburgerWrapper'),
+          document.getElementById('disableNav'),
+          document.getElementById('contentWrapperall'),
+          document.getElementById('signInWrapper'),
+          document.getElementById('signUpWrapper'),
+          document.getElementById('contentWrapper')
+        ];
+
+    for (const element of elements) {
+        element.style.display = 'none';
+    }
 }
