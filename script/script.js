@@ -35,6 +35,7 @@ window.addEventListener('load', () => {
     // const continueWithSignUp = document.getElementById('continueWithSignUp');
     const signInButton = document.getElementById('signInBtn');
     const signUpButton = document.getElementById('signUpBtn');
+    const addBirthDate = document.getElementById('addBirthDate');
 
     // AOS.init();
 
@@ -86,7 +87,6 @@ window.addEventListener('load', () => {
         //   printEntries(user.uid);
         }
       });
-
 
     signInButton.addEventListener('click', () => {
         const email = document.getElementById('emailIn');
@@ -345,7 +345,6 @@ window.addEventListener('load', () => {
         }
     }
 
-  // Burger Menu
   menuburger.addEventListener('click', () => {
     const b1 = document.getElementById('burger1');
     const b2 = document.getElementById('burger2');
@@ -369,7 +368,6 @@ window.addEventListener('load', () => {
     } 
   })
 
-  // Nav enable
   disableNav.addEventListener('click', () => { 
     if (document.getElementById('nav').style.left === '0px') {
       menuburger.click();
@@ -378,33 +376,30 @@ window.addEventListener('load', () => {
 
   entries.addEventListener('click', () => {
       hideAll();
-      changeDisplayProperty('contentWrapperall', 'block');
+    //   changeDisplayProperty('contentWrapperall', 'block');
       changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('contentWrapper', 'block');
+
+      menuburger.click();
   })
 
   login.addEventListener('click', () => {
       hideAll();
-      changeDisplayProperty('contentWrapperall', 'block');
+    //   changeDisplayProperty('contentWrapperall', 'block');
       changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('signInWrapper', 'block');
+
+      menuburger.click();
   })
 
   createaccount.addEventListener('click', () => {
       hideAll();
-      changeDisplayProperty('contentWrapperall', 'block');
+    //   changeDisplayProperty('contentWrapperall', 'block');
       changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('signUpWrapper', 'block');
+
+      menuburger.click(); 
   })
-
-//   menuburgerWrapper'),
-//           document.getElementById('disableNav'),
-//         //   document.getElementById('contentWrapperall'),
-//           document.getElementById('signInWrapper'),
-//           document.getElementById('signUpWrapper'),
-//           document.getElementById('contentWrapper')
-
-  
 
   function printEntries(data) {
     const entries = [];
@@ -432,9 +427,18 @@ window.addEventListener('load', () => {
     
   }
 
-  
-})
+//   addBirthDate.addEventListener("click", () => {
+//     const birthdayName = document.getElementById("addBirthdayName");
+//     const birthday = document.getElementById("addBirthday");
+//     const key = new Date().getTime();
 
+//     firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/birthdates/${key}`).set({
+//       name: birthdayName.value,
+//       birthdate: birthday.value,
+//       key: key
+//     });
+//   });
+})
 
 
 function validatePassword(password) {
@@ -454,11 +458,11 @@ function changeDisplayProperty(id, property) {
     document.getElementById(id).style.display = property;
 }
 
-// Funktion damit man alle Element nicht sichbar sind
 function hideAll() {
-    const elements = [document.getElementById('menuburgerWrapper'),
-          document.getElementById('disableNav'),
-          document.getElementById('contentWrapperall'),
+    const elements = [
+        //   document.getElementById('menuburgerWrapper'),
+        //   document.getElementById('disableNav'),
+        //   document.getElementById('contentWrapperall'),
           document.getElementById('signInWrapper'),
           document.getElementById('signUpWrapper'),
           document.getElementById('contentWrapper')
