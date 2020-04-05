@@ -28,6 +28,7 @@
         <p id="entries">Einträge</p>
         <p id="login">Login</p>
         <p id="createaccount">Account erstellen</p>
+        <p id="createentries">Einträge erstellen</p>
       </div>
     </div>
   </nav>
@@ -101,11 +102,27 @@
       <p id="entryFDB"></p>
     </div>
     
-    <!-- <div id="createbirthday">
-        <input type="text" placeholder="Name" id="addBirthdayName" value="Jonas">
+    <div id="createbirthday">
+        <h1>Einträge erstellen</h1>
+        <input type="text" placeholder="Name" id="addBirthdayName">
         <input id ="addBirthday" type="date" value="2000-01-01">
-        <button id="addBirthDate">Create</button>
-    </div> -->
+
+        <div class="btnWrapper">
+          <div class="button" id="addBirthDate">
+            <span id="addBirthDateText">Anmelden</span>
+          
+            <div id="signInloader" class="hide">
+              <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <button id="addBirthDate">Create</button> -->
+    </div>
 
 
 

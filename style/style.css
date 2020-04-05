@@ -111,6 +111,7 @@ input:focus {
 
 #contentWrapper {
     display: block;
+    /* display: none; */
 }
 
 /* Falsche Eingaben */
@@ -139,4 +140,13 @@ input:focus {
 .entry p {
   margin: 5px;
   padding: 0;
+}
+
+#createbirthday {
+  display: none;
+  flex-direction: column;
+  width: 70vw;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

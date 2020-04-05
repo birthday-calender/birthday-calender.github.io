@@ -56,6 +56,7 @@ window.addEventListener('load', () => {
         changeDisplayProperty('contentWrapperall', 'block');
         changeDisplayProperty('menuburgerWrapper', 'block');
         changeDisplayProperty('signUpWrapper', 'block');
+        // changeDisplayProperty('createbirthday', 'block')
     });
 
     goToSignIn.addEventListener('click', () => {
@@ -74,12 +75,13 @@ window.addEventListener('load', () => {
         changeDisplayProperty('contentWrapperall', 'block');
         changeDisplayProperty('menuburgerWrapper', 'block');
         changeDisplayProperty('signInWrapper', 'block');
+        // changeDisplayProperty('createbirthday', 'block')
     });
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             firebase.database().ref(`users/${firebase.auth().currentUser.uid}/birthdates`).once('value').then((snapshot) => {
-                console.table(snapshot.val());
+                // console.table(snapshot.val());
                 printEntries(snapshot.val());
             });
         
@@ -379,6 +381,7 @@ window.addEventListener('load', () => {
     //   changeDisplayProperty('contentWrapperall', 'block');
       changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('contentWrapper', 'block');
+    //   changeDisplayProperty('createbirthday', 'block')
 
       menuburger.click();
   })
@@ -388,6 +391,7 @@ window.addEventListener('load', () => {
     //   changeDisplayProperty('contentWrapperall', 'block');
       changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('signInWrapper', 'block');
+    //   changeDisplayProperty('createbirthday', 'block')
 
       menuburger.click();
   })
@@ -397,6 +401,17 @@ window.addEventListener('load', () => {
     //   changeDisplayProperty('contentWrapperall', 'block');
       changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('signUpWrapper', 'block');
+    //   changeDisplayProperty('createbirthday', 'block')
+
+      menuburger.click(); 
+  })
+
+  createentries.addEventListener('click', () => {
+      hideAll();
+      //   changeDisplayProperty('contentWrapperall', 'block');
+      changeDisplayProperty('menuburgerWrapper', 'block');
+    //   changeDisplayProperty('signUpWrapper', 'block');
+      changeDisplayProperty('createbirthday', 'block')
 
       menuburger.click(); 
   })
@@ -427,17 +442,17 @@ window.addEventListener('load', () => {
     
   }
 
-//   addBirthDate.addEventListener("click", () => {
-//     const birthdayName = document.getElementById("addBirthdayName");
-//     const birthday = document.getElementById("addBirthday");
-//     const key = new Date().getTime();
+  addBirthDate.addEventListener("click", () => {
+    const birthdayName = document.getElementById("addBirthdayName");
+    const birthday = document.getElementById("addBirthday");
+    const key = new Date().getTime();
 
-//     firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/birthdates/${key}`).set({
-//       name: birthdayName.value,
-//       birthdate: birthday.value,
-//       key: key
-//     });
-//   });
+    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/birthdates/${key}`).set({
+      name: birthdayName.value,
+      birthdate: birthday.value,
+      key: key
+    });
+  });
 })
 
 
@@ -465,7 +480,8 @@ function hideAll() {
         //   document.getElementById('contentWrapperall'),
           document.getElementById('signInWrapper'),
           document.getElementById('signUpWrapper'),
-          document.getElementById('contentWrapper')
+          document.getElementById('contentWrapper'),
+          document.getElementById('createbirthday')
         ];
 
     for (const element of elements) {
