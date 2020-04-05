@@ -27,20 +27,20 @@ body {
 } 
 
 .button {
-    background: #1a73e8;
-    border-radius: 15px;
+    background: #1a73e8; 
+    border-radius: 10px;
     outline: none;
     border: #1a73e8;
-    padding: 20px;
+    padding: 14px;
     color: white;
     font-weight: bold;
-    font-size: 75%;
+    font-size: 90%;
     box-shadow: 2px 5px 7px 0px rgba(143,143,143,1);
     letter-spacing: .50px;
     user-select: none;
     float: right;
     width: 17vw;
-    height: 3vh;
+    height: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,11 +49,11 @@ body {
 input {
     outline: none;
     border: none;
-    border-bottom: lightgray 5px solid;
-    height: 35pt;
+    border-bottom: lightgray 3px solid;
+    height: 20pt;
     width: 100%;
     display: block;
-    font-size: 30pt;
+    font-size: 12pt;
     transition: border-bottom 250ms ease;
     cursor: text;
     margin: 0 0 1.5% 0;
@@ -61,7 +61,7 @@ input {
 }
   
 input:focus {
-    border-bottom: #5ac878 5px solid;
+    border-bottom: #5ac878 3px solid;
 }
 
 #nav {
@@ -73,19 +73,40 @@ input:focus {
   width: 100%;
   height: 100%;
   display: flex;
-  /* justify-content: center; */
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   margin: 0 10%;
+  /* padding: 5%; */
+  font-weight: bold;
 }
 
-#signInWrapper {
+#signInWrapper, #signUpWrapper{
     display: none;
-    
+    width: 70vw;
+    height: 12vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#signInWrapper, #signInWrapper {
+  font-size: 15px;
 }
 
 #signUpWrapper {
   display: none;
   /* position: fixed; */
+}
+
+#goToSignUp, #goToSignIn {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#signUpWrapper .button {
+  padding: 14px 20px;
 }
 
 #contentWrapper {
@@ -115,12 +136,7 @@ input:focus {
   font-size: 2.5vmax;
 }
 
-p {
+.entry p {
   margin: 5px;
   padding: 0;
 }
-
-/* #createbirthday {
-  display: flex;
-  font-size: 10px;
-} */
