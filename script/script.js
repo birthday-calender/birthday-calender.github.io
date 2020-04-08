@@ -82,6 +82,25 @@ window.addEventListener('load', () => {
         firebase.auth().signOut();
     });
 
+    entriesnav.addEventListener('click', () => {
+        hideAll();
+        changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('contentWrapper', 'block');
+        menuburger.click();
+    })
+
+    plus.addEventListener('click', () => {
+        hideAll();
+        changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('createbirthdayOka', 'block');
+    })
+
+    user.addEventListener('click', () => {
+        hideAll();
+        changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('signInWrapper', 'block');
+    })
+
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             firebase.database().ref(`users/${firebase.auth().currentUser.uid}/birthdates`).once('value').then((snapshot) => {
@@ -288,7 +307,6 @@ window.addEventListener('load', () => {
             hideAll();
             changeDisplayProperty('menuburgerWrapper', 'block');
             changeDisplayProperty('contentWrapper', 'block');
-            // menuburger.click();
         
         } else {
             stopLoadingAnimation();
@@ -397,7 +415,7 @@ window.addEventListener('load', () => {
       changeDisplayProperty('contentWrapper', 'block');
     //   changeDisplayProperty('createbirthday', 'block')
 
-      menuburger.click();
+    //   menuburger.click();
   })
 
   login.addEventListener('click', () => {
