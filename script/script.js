@@ -78,6 +78,10 @@ window.addEventListener('load', () => {
         // changeDisplayProperty('createbirthday', 'block')
     });
 
+    signOut.addEventListener('click', () => {
+        firebase.auth().signOut();
+    });
+
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             firebase.database().ref(`users/${firebase.auth().currentUser.uid}/birthdates`).once('value').then((snapshot) => {
@@ -159,6 +163,9 @@ window.addEventListener('load', () => {
                 stopLoadingAnimation();
                 sessionStorage.setItem('choseGoogle', true);
             });
+            hideAll();
+            changeDisplayProperty('menuburgerWrapper', 'block');
+            changeDisplayProperty('contentWrapper', 'block');
         } else {
             stopLoadingAnimation();
         }
@@ -240,6 +247,8 @@ window.addEventListener('load', () => {
 
             password.classList.add('errorInput');
             isValid = false;
+
+
         }
 
         if (isValid) {
@@ -276,6 +285,11 @@ window.addEventListener('load', () => {
                 	email: firebase.auth().currentUser.email 
                 });
             });
+            hideAll();
+            changeDisplayProperty('menuburgerWrapper', 'block');
+            changeDisplayProperty('contentWrapper', 'block');
+            // menuburger.click();
+        
         } else {
             stopLoadingAnimation();
         }
@@ -447,11 +461,22 @@ window.addEventListener('load', () => {
     const birthday = document.getElementById("addBirthday");
     const key = new Date().getTime();
 
-    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/birthdates/${key}`).set({
-      name: birthdayName.value,
-      birthdate: birthday.value,
-      key: key
-    });
+    // const name = document.getElementById('addBirthdayName');
+    const createbirthdayfeedback = document.getElementById('createbirthdayfeedback');
+    
+    // startLoadingAnimation();
+    if(birthdayName.value ==='' || birthdayName.value === ' ') {
+        addBirthdayName.style.borderBottom = 'red 3px solid';
+        createbirthdayfeedback.textContent = 'Der Name des Geburtstagskind ist erwünscht.';  
+    } else {
+        addBirthdayName.style.borderBottom = 'lightgray 3px solid';
+        createbirthdayfeedback.textContent = '';
+        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/birthdates/${key}`).set({
+            name: birthdayName.value,
+            birthdate: birthday.value,
+            key: key
+        });
+    }
   });
 })
 
@@ -487,4 +512,9 @@ function hideAll() {
     for (const element of elements) {
         element.style.display = 'none';
     }
+}
+
+function printErrorMessage(elm, msg) {
+    elm.textContent = msg;
+    elm.style.color = 'red';
 }

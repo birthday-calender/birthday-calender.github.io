@@ -111,11 +111,14 @@ input:focus {
 
 #contentWrapper {
     display: block;
+    width: 70%;
+    height: 89%;
+    /* height: ; */
     /* display: none; */
 }
 
 /* Falsche Eingaben */
-#signInFDB, #addFDB, #deletedFDB, #signUpFDB, #entryFDB, #changeEmailFDB, #changeUsernameFDB, #changePWFDB, #kontoError, #themeFDB {
+#signInFDB, #addFDB, #deletedFDB, #signUpFDB, #entryFDB, #changeEmailFDB, #changeUsernameFDB, #changePWFDB, #kontoError, #themeFDB, #createbirthdayfeedback, #pwInFeedback, #emInFeedback, #emUpFeedback, #pwUpFeedback {
   margin-left: 2vw;
   margin-right: 2vw;
   color: red;

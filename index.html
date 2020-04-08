@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="./style/style.css">
   <link rel="stylesheet" href="style/nav.css">
   <script src="./script/script.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,500' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:200,400' rel='stylesheet'>
+  <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css' rel='stylesheet' integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous'>
   <!-- <script src="script/account.js"></script> -->
 </head>
 <body>
@@ -106,6 +109,7 @@
         <h1>Einträge erstellen</h1>
         <input type="text" placeholder="Name" id="addBirthdayName">
         <input id ="addBirthday" type="date" value="2000-01-01">
+        <p id="createbirthdayfeedback"></p>
 
         <div class="btnWrapper">
           <div class="button" id="addBirthDate">
@@ -133,6 +137,7 @@
   </div>
 
   <footer id="footer">
+    <i class="fas fa-sign-out-alt" id="signOut"></i>
    
   </footer>
 </body>
