@@ -78,7 +78,7 @@ input:focus {
   flex-direction: column;
   margin: 0 10%;
   /* padding: 5%; */
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 #signInWrapper, #signUpWrapper{
@@ -113,14 +113,19 @@ input:focus {
     display: block;
     width: 70%;
     height: 89%;
+    align-items: center;
     /* height: ; */
     /* display: none; */
 }
 
 /* Falsche Eingaben */
-#signInFDB, #addFDB, #deletedFDB, #signUpFDB, #entryFDB, #changeEmailFDB, #changeUsernameFDB, #changePWFDB, #kontoError, #themeFDB, #createbirthdayfeedback, #pwInFeedback, #emInFeedback, #emUpFeedback, #pwUpFeedback, #entriesvor {
+#signInFDB, #addFDB, #deletedFDB, #signUpFDB, #entryFDB, #changeEmailFDB, #changeUsernameFDB, #changePWFDB, #kontoError, #themeFDB, #createbirthdayfeedback, #pwInFeedback, #emInFeedback, #emUpFeedback, #pwUpFeedback {
   margin-left: 2vw;
   margin-right: 2vw;
+  color: red;
+}
+
+#entriesvor {
   color: red;
 }
 

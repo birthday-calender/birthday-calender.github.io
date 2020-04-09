@@ -25,82 +25,78 @@ window.addEventListener('load', () => {
     
 //   const signup = document.getElementById('signup');
 //   const signin = document.getElementById('signin');
-  const signout = document.getElementById('signout')
+//   const signout = document.getElementById('signout')
 
-  const goToSignIn = document.getElementById('goToSignIn');
-    const goToSignUp = document.getElementById('goToSignUp');
-    const signUpWrapper = document.getElementById('signUpWrapper');
-    const signInWrapper = document.getElementById('signInWrapper');
+//   const goToSignIn = document.getElementById('goToSignIn');
+    // const goToSignUp = document.getElementById('goToSignUp');
+    // const signUpWrapper = document.getElementById('signUpWrapper');
+    // const signInWrapper = document.getElementById('signInWrapper');
     // const continueWithSignIn = document.getElementById('continueWithSignIn');
     // const continueWithSignUp = document.getElementById('continueWithSignUp');
     const signInButton = document.getElementById('signInBtn');
     const signUpButton = document.getElementById('signUpBtn');
-    const addBirthDate = document.getElementById('addBirthDate');
+    // const addBirthDate = document.getElementById('addBirthDate');
+    // const userIcon = document.getElementById('userIcon');
 
     // AOS.init();
 
 
     goToSignUp.addEventListener('click', () => {
-        signInWrapper.classList.remove('fadeIn');
-        signInWrapper.classList.add('fadeOut');
-        signUpWrapper.classList.add('fadeIn');
+        // signInWrapper.classList.remove('fadeIn');
+        // signInWrapper.classList.add('fadeOut');
+        // signUpWrapper.classList.add('fadeIn');
 
-        signUpWrapper.style.zIndex = 100;
-        signInWrapper.style.zIndex = 0;
+        // signUpWrapper.style.zIndex = 100;
+        // signInWrapper.style.zIndex = 0;
 
-        setTimeout(() => {
-            clearSignIn();
-        }, 310);
+        // setTimeout(() => {
+        //     clearSignIn();
+        // }, 310);
 
         hideAll();
-        changeDisplayProperty('contentWrapperall', 'block');
-        changeDisplayProperty('menuburgerWrapper', 'block');
+        // changeDisplayProperty('contentWrapperall', 'block');
+        // changeDisplayProperty('menuburgerWrapper', 'block');
         changeDisplayProperty('signUpWrapper', 'block');
         // changeDisplayProperty('createbirthday', 'block')
     });
 
     goToSignIn.addEventListener('click', () => {
-        signUpWrapper.classList.remove('fadeIn');
-        signUpWrapper.classList.add('fadeOut');
-        signInWrapper.classList.add('fadeIn');
-        signInWrapper.style.zIndex = 100;
-        signUpWrapper.style.zIndex = 0;
+        // signUpWrapper.classList.remove('fadeIn');
+        // signUpWrapper.classList.add('fadeOut');
+        // signInWrapper.classList.add('fadeIn');
+        // signInWrapper.style.zIndex = 100;
+        // signUpWrapper.style.zIndex = 0;
 
-        setTimeout(() => {
-            clearSignUp();
-        }, 310);
+        // setTimeout(() => {
+        //     clearSignUp();
+        // }, 310);
 
-        
         hideAll();
-        changeDisplayProperty('contentWrapperall', 'block');
-        changeDisplayProperty('menuburgerWrapper', 'block');
         changeDisplayProperty('signInWrapper', 'block');
-        // changeDisplayProperty('createbirthday', 'block')
     });
 
     signOut.addEventListener('click', () => {
         firebase.auth().signOut();
-        location.reload();
-        location.reload(true);
+        sitereload();
+        // position();
     });
+
+    userIcon.addEventListener('click', () => {
+        hideAll();
+        changeDisplayProperty('signInWrapper', 'block');
+    })
 
     entriesnav.addEventListener('click', () => {
         hideAll();
-        changeDisplayProperty('menuburgerWrapper', 'block');
+        // changeDisplayProperty('menuburgerWrapper', 'block');
         changeDisplayProperty('contentWrapper', 'block');
         menuburger.click();
     })
 
     plus.addEventListener('click', () => {
         hideAll();
-        changeDisplayProperty('menuburgerWrapper', 'block');
+        // changeDisplayProperty('menuburgerWrapper', 'block');
         changeDisplayProperty('createbirthday', 'block');
-    })
-
-    user.addEventListener('click', () => {
-        hideAll();
-        changeDisplayProperty('menuburgerWrapper', 'block');
-        changeDisplayProperty('signInWrapper', 'block');
     })
 
     firebase.auth().onAuthStateChanged((user) => {
@@ -113,7 +109,7 @@ window.addEventListener('load', () => {
         
         //   printEntries(user.uid);
         }
-      });
+    });
 
     signInButton.addEventListener('click', () => {
         const email = document.getElementById('emailIn');
@@ -338,8 +334,13 @@ window.addEventListener('load', () => {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             statusOutput.textContent = "eingeloggt";
+            userIcon.style.display = "none";
+            signOut.style.display = "block";
           // User is signed in.
         } else {
+            statusOutput.textContent = "ausgeloggt";
+            signOut.style.display = "none";
+            userIcon.style.display = "block";
           // No user is signed in.
         }
    });
@@ -422,7 +423,7 @@ window.addEventListener('load', () => {
   entries.addEventListener('click', () => {
       hideAll();
     //   changeDisplayProperty('contentWrapperall', 'block');
-      changeDisplayProperty('menuburgerWrapper', 'block');
+    //   changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('contentWrapper', 'block');
     //   changeDisplayProperty('createbirthday', 'block')
 
@@ -432,7 +433,7 @@ window.addEventListener('load', () => {
   login.addEventListener('click', () => {
       hideAll();
     //   changeDisplayProperty('contentWrapperall', 'block');
-      changeDisplayProperty('menuburgerWrapper', 'block');
+    //   changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('signInWrapper', 'block');
     //   changeDisplayProperty('createbirthday', 'block')
 
@@ -442,7 +443,7 @@ window.addEventListener('load', () => {
   createaccount.addEventListener('click', () => {
       hideAll();
     //   changeDisplayProperty('contentWrapperall', 'block');
-      changeDisplayProperty('menuburgerWrapper', 'block');
+    //   changeDisplayProperty('menuburgerWrapper', 'block');
       changeDisplayProperty('signUpWrapper', 'block');
     //   changeDisplayProperty('createbirthday', 'block')
 
@@ -452,7 +453,7 @@ window.addEventListener('load', () => {
   createentries.addEventListener('click', () => {
       hideAll();
       //   changeDisplayProperty('contentWrapperall', 'block');
-      changeDisplayProperty('menuburgerWrapper', 'block');
+    //   changeDisplayProperty('menuburgerWrapper', 'block');
     //   changeDisplayProperty('signUpWrapper', 'block');
       changeDisplayProperty('createbirthday', 'block')
 
@@ -512,6 +513,8 @@ window.addEventListener('load', () => {
         });
 
     }
+    sitereload();
+    // position();
   });
 })
 
@@ -553,3 +556,23 @@ function printErrorMessage(elm, msg) {
     elm.textContent = msg;
     elm.style.color = 'red';
 }
+
+function sitereload() {
+    location.reload();
+    location.reload(true);
+}
+
+// function position() {
+//     if(signInWrapper.style.display == "block") {
+//         goToSignIn();
+//     } else if(signUpWrapper.style.display == "block") {
+//         goToSignUp();
+//     } else if(contentWrapper.style.display == "block") {
+//         entries();
+//     } else if(createbirthday.style.display == "block") { 
+//         createentries();
+//     }
+//     else {
+//         alert('Hallo');
+//     }
+// }
