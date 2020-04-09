@@ -118,7 +118,7 @@ input:focus {
 }
 
 /* Falsche Eingaben */
-#signInFDB, #addFDB, #deletedFDB, #signUpFDB, #entryFDB, #changeEmailFDB, #changeUsernameFDB, #changePWFDB, #kontoError, #themeFDB, #createbirthdayfeedback, #pwInFeedback, #emInFeedback, #emUpFeedback, #pwUpFeedback {
+#signInFDB, #addFDB, #deletedFDB, #signUpFDB, #entryFDB, #changeEmailFDB, #changeUsernameFDB, #changePWFDB, #kontoError, #themeFDB, #createbirthdayfeedback, #pwInFeedback, #emInFeedback, #emUpFeedback, #pwUpFeedback, #entriesvor {
   margin-left: 2vw;
   margin-right: 2vw;
   color: red;

@@ -80,6 +80,8 @@ window.addEventListener('load', () => {
 
     signOut.addEventListener('click', () => {
         firebase.auth().signOut();
+        location.reload();
+        location.reload(true);
     });
 
     entriesnav.addEventListener('click', () => {
@@ -92,7 +94,7 @@ window.addEventListener('load', () => {
     plus.addEventListener('click', () => {
         hideAll();
         changeDisplayProperty('menuburgerWrapper', 'block');
-        changeDisplayProperty('createbirthdayOka', 'block');
+        changeDisplayProperty('createbirthday', 'block');
     })
 
     user.addEventListener('click', () => {
@@ -176,15 +178,14 @@ window.addEventListener('load', () => {
                 }
             });
 
-            // statusOutput.textContent = "eingelogt";
-
             promise.then(() => {
                 stopLoadingAnimation();
                 sessionStorage.setItem('choseGoogle', true);
+                hideAll();
+                changeDisplayProperty('menuburgerWrapper', 'block');
+                changeDisplayProperty('contentWrapper', 'block');
             });
-            hideAll();
-            changeDisplayProperty('menuburgerWrapper', 'block');
-            changeDisplayProperty('contentWrapper', 'block');
+            
         } else {
             stopLoadingAnimation();
         }
@@ -303,10 +304,11 @@ window.addEventListener('load', () => {
                 firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
                 	email: firebase.auth().currentUser.email 
                 });
+                hideAll();
+                changeDisplayProperty('menuburgerWrapper', 'block');
+                changeDisplayProperty('contentWrapper', 'block');
             });
-            hideAll();
-            changeDisplayProperty('menuburgerWrapper', 'block');
-            changeDisplayProperty('contentWrapper', 'block');
+            
         
         } else {
             stopLoadingAnimation();
@@ -332,6 +334,15 @@ window.addEventListener('load', () => {
             signUpBtnText.style.opacity = 1;
         }
     });
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            statusOutput.textContent = "eingeloggt";
+          // User is signed in.
+        } else {
+          // No user is signed in.
+        }
+   });
 
     function clearSignUp() {
         const inputs = [
@@ -451,24 +462,29 @@ window.addEventListener('load', () => {
   function printEntries(data) {
     const entries = [];
     const entryWrapper = document.getElementById('entryWrapper');
+    const entriesvor = document.getElementById('entriesvor');
 
     for (const index in data) {
         entries.push(data[index]);
     }
 
-    for (let i = 0; i < entries.length; i++) {
-        const newEntry = document.createElement('div');
-        const name = document.createElement('p');
-        const birthdate = document.createElement('p');
-        
-        name.textContent = "Geburtstag: " + entries[i].name;
-        birthdate.textContent = "Datum: " + entries[i].birthdate; 
-
-        newEntry.setAttribute('class', 'entry');
-
-        newEntry.appendChild(name);
-        newEntry.appendChild(birthdate);
-        entryWrapper.appendChild(newEntry);
+    if(entries.length == '0') {
+        entriesvor.textContent = 'Keine Einträge verfügbar';
+    } else {
+        for (let i = 0; i < entries.length; i++) {
+            const newEntry = document.createElement('div');
+            const name = document.createElement('p');
+            const birthdate = document.createElement('p');
+            
+            name.textContent = "Geburtstag: " + entries[i].name;
+            birthdate.textContent = "Datum: " + entries[i].birthdate; 
+    
+            newEntry.setAttribute('class', 'entry');
+    
+            newEntry.appendChild(name);
+            newEntry.appendChild(birthdate);
+            entryWrapper.appendChild(newEntry);
+        }
     }
 
     
@@ -494,6 +510,7 @@ window.addEventListener('load', () => {
             birthdate: birthday.value,
             key: key
         });
+
     }
   });
 })
