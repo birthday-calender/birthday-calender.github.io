@@ -24,6 +24,7 @@ body {
     align-items: center;
     padding: 1%;
     margin: 0;
+    color: white;
 } 
 
 .button {
@@ -49,6 +50,7 @@ body {
 input {
     outline: none;
     border: none;
+    background: none;
     border-bottom: lightgray 3px solid;
     height: 20pt;
     width: 100%;

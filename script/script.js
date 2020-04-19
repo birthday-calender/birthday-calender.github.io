@@ -1,16 +1,16 @@
 window.addEventListener('load', () => {
-  const firebaseConfig = {
-    apiKey: "AIzaSyCCsvg2WxtQutyZ1sEYiiR2A-qh4lrGBTM",
-    authDomain: "geburtstagskalender-2aba1.firebaseapp.com",
-    databaseURL: "https://geburtstagskalender-2aba1.firebaseio.com",
-    projectId: "geburtstagskalender-2aba1",
-    storageBucket: "geburtstagskalender-2aba1.appspot.com",
-    messagingSenderId: "470947879293",
-    appId: "1:470947879293:web:2b41682dd70fe5a3d35414",
-    measurementId: "G-R5D59BEZ8D"
-  };
-  
-  firebase.initializeApp(firebaseConfig);
+    const firebaseConfig = {
+        apiKey: "AIzaSyCCsvg2WxtQutyZ1sEYiiR2A-qh4lrGBTM",
+        authDomain: "geburtstagskalender-2aba1.firebaseapp.com",
+        databaseURL: "https://geburtstagskalender-2aba1.firebaseio.com",
+        projectId: "geburtstagskalender-2aba1",
+        storageBucket: "geburtstagskalender-2aba1.appspot.com",
+        messagingSenderId: "470947879293",
+        appId: "1:470947879293:web:2b41682dd70fe5a3d35414",
+        measurementId: "G-R5D59BEZ8D"
+    };
+
+    firebase.initializeApp(firebaseConfig);
     // let data = {1575110734831: {
     //     birthdate: "2003-03-06",
     //     key: 1575110734831, 
@@ -22,12 +22,12 @@ window.addEventListener('load', () => {
     //     name: "Michael"} 
     // };
 
-    
-//   const signup = document.getElementById('signup');
-//   const signin = document.getElementById('signin');
-//   const signout = document.getElementById('signout')
 
-//   const goToSignIn = document.getElementById('goToSignIn');
+    //   const signup = document.getElementById('signup');
+    //   const signin = document.getElementById('signin');
+    //   const signout = document.getElementById('signout')
+
+    //   const goToSignIn = document.getElementById('goToSignIn');
     // const goToSignUp = document.getElementById('goToSignUp');
     // const signUpWrapper = document.getElementById('signUpWrapper');
     // const signInWrapper = document.getElementById('signInWrapper');
@@ -105,9 +105,9 @@ window.addEventListener('load', () => {
                 // console.table(snapshot.val());
                 printEntries(snapshot.val());
             });
-        
-        
-        //   printEntries(user.uid);
+
+
+            //   printEntries(user.uid);
         }
     });
 
@@ -154,11 +154,11 @@ window.addEventListener('load', () => {
             promise.catch((error) => {
                 const errorMsg = error.message;
                 const messages = [
-                    {message: 'The password is invalid or the user does not have a password.', feedback: 'Das eingegebene Passwort ist ungültig.', affected: 'pw'},
-                    {message: 'Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later', feedback: 'Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.', affected: ''},
-                    {message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.', affected: 'em'},
-                    {message: 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.', feedback: 'Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.', affected: ''},
-                    {message: 'The email address is already in use by another account.', feedback: 'Die angebene E-Mail Adresse wird bereits verwendet.', affected: 'em'},
+                    { message: 'The password is invalid or the user does not have a password.', feedback: 'Das eingegebene Passwort ist ungültig.', affected: 'pw' },
+                    { message: 'Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later', feedback: 'Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.', affected: '' },
+                    { message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.', affected: 'em' },
+                    { message: 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.', feedback: 'Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.', affected: '' },
+                    { message: 'The email address is already in use by another account.', feedback: 'Die angebene E-Mail Adresse wird bereits verwendet.', affected: 'em' },
                 ];
 
                 for (const msg of messages) {
@@ -181,7 +181,7 @@ window.addEventListener('load', () => {
                 changeDisplayProperty('menuburgerWrapper', 'block');
                 changeDisplayProperty('contentWrapper', 'block');
             });
-            
+
         } else {
             stopLoadingAnimation();
         }
@@ -272,11 +272,11 @@ window.addEventListener('load', () => {
             promise.catch((error) => {
                 const errorMsg = error.message;
                 const messages = [
-                    {message: 'The password is invalid or the user does not have a password.', feedback: 'Das eingegebene Passwort ist ungültig.', affected: 'pw'},
-                    {message: 'Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later', feedback: 'Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.', affected: ''},
-                    {message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.', affected: 'em'},
-                    {message: 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.', feedback: 'Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.', affected: ''},
-                    {message: 'The email address is already in use by another account.', feedback: 'Die angebene E-Mail Adresse wird bereits verwendet.', affected: 'em'},
+                    { message: 'The password is invalid or the user does not have a password.', feedback: 'Das eingegebene Passwort ist ungültig.', affected: 'pw' },
+                    { message: 'Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later', feedback: 'Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.', affected: '' },
+                    { message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.', affected: 'em' },
+                    { message: 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.', feedback: 'Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.', affected: '' },
+                    { message: 'The email address is already in use by another account.', feedback: 'Die angebene E-Mail Adresse wird bereits verwendet.', affected: 'em' },
                 ];
 
                 for (const msg of messages) {
@@ -298,14 +298,14 @@ window.addEventListener('load', () => {
                 sessionStorage.setItem('choseGoogle', false);
 
                 firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
-                	email: firebase.auth().currentUser.email 
+                    email: firebase.auth().currentUser.email
                 });
                 hideAll();
                 changeDisplayProperty('menuburgerWrapper', 'block');
                 changeDisplayProperty('contentWrapper', 'block');
             });
-            
-        
+
+
         } else {
             stopLoadingAnimation();
         }
@@ -331,19 +331,19 @@ window.addEventListener('load', () => {
         }
     });
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             statusOutput.textContent = "eingeloggt";
             userIcon.style.display = "none";
             signOut.style.display = "block";
-          // User is signed in.
+            // User is signed in.
         } else {
             statusOutput.textContent = "ausgeloggt";
             signOut.style.display = "none";
             userIcon.style.display = "block";
-          // No user is signed in.
+            // No user is signed in.
         }
-   });
+    });
 
     function clearSignUp() {
         const inputs = [
@@ -391,145 +391,148 @@ window.addEventListener('load', () => {
         }
     }
 
-  menuburger.addEventListener('click', () => {
-    const b1 = document.getElementById('burger1');
-    const b2 = document.getElementById('burger2');
-    const b3 = document.getElementById('burger3');
-    const nav = document.getElementById('nav');
-    const burger = document.getElementById('menuburger');
-    const disableNav =document.getElementById('disableNav');
+    menuburger.addEventListener('click', () => {
+        const b1 = document.getElementById('burger1');
+        const b2 = document.getElementById('burger2');
+        const b3 = document.getElementById('burger3');
+        const nav = document.getElementById('nav');
+        const burger = document.getElementById('menuburger');
+        const disableNav = document.getElementById('disableNav');
 
-    b1.classList.toggle('burger1Active');
-    b2.classList.toggle('burger2Active');
-    b3.classList.toggle('burger3Active');
+        b1.classList.toggle('burger1Active');
+        b2.classList.toggle('burger2Active');
+        b3.classList.toggle('burger3Active');
 
-    if (nav.style.left === '0px') {
-      nav.style.left = '-90vw';
-      burger.style.left = 0;
-      disableNav.style.display = 'none';
-    } else {
-      nav.style.left = 0;
-      burger.style.left = '82vw';
-      disableNav.style.display = 'block';
-    } 
-  })
-
-  disableNav.addEventListener('click', () => { 
-    if (document.getElementById('nav').style.left === '0px') {
-      menuburger.click();
-    }
-  });
-
-  entries.addEventListener('click', () => {
-      hideAll();
-    //   changeDisplayProperty('contentWrapperall', 'block');
-    //   changeDisplayProperty('menuburgerWrapper', 'block');
-      changeDisplayProperty('contentWrapper', 'block');
-    //   changeDisplayProperty('createbirthday', 'block')
-
-    //   menuburger.click();
-  })
-
-  login.addEventListener('click', () => {
-      hideAll();
-    //   changeDisplayProperty('contentWrapperall', 'block');
-    //   changeDisplayProperty('menuburgerWrapper', 'block');
-      changeDisplayProperty('signInWrapper', 'block');
-    //   changeDisplayProperty('createbirthday', 'block')
-
-      menuburger.click();
-  })
-
-  createaccount.addEventListener('click', () => {
-      hideAll();
-    //   changeDisplayProperty('contentWrapperall', 'block');
-    //   changeDisplayProperty('menuburgerWrapper', 'block');
-      changeDisplayProperty('signUpWrapper', 'block');
-    //   changeDisplayProperty('createbirthday', 'block')
-
-      menuburger.click(); 
-  })
-
-  createentries.addEventListener('click', () => {
-      hideAll();
-      //   changeDisplayProperty('contentWrapperall', 'block');
-    //   changeDisplayProperty('menuburgerWrapper', 'block');
-    //   changeDisplayProperty('signUpWrapper', 'block');
-      changeDisplayProperty('createbirthday', 'block')
-
-      menuburger.click(); 
-  })
-
-  function printEntries(data) {
-    const entries = [];
-    const entryWrapper = document.getElementById('entryWrapper');
-    const entriesvor = document.getElementById('entriesvor');
-
-    for (const index in data) {
-        entries.push(data[index]);
-    }
-
-    if(entries.length == '0') {
-        entriesvor.textContent = 'Keine Einträge verfügbar';
-    } else {
-        for (let i = 0; i < entries.length; i++) {
-            const newEntry = document.createElement('div');
-            const name = document.createElement('p');
-            const birthdate = document.createElement('p');
-            
-            name.textContent = "Geburtstag: " + entries[i].name;
-            birthdate.textContent = "Datum: " + entries[i].birthdate; 
-    
-            newEntry.setAttribute('class', 'entry');
-    
-            newEntry.appendChild(name);
-            newEntry.appendChild(birthdate);
-            entryWrapper.appendChild(newEntry);
+        if (nav.style.left === '0px') {
+            nav.style.left = '-90vw';
+            burger.style.left = 0;
+            disableNav.style.display = 'none';
+        } else {
+            nav.style.left = 0;
+            burger.style.left = '82vw';
+            disableNav.style.display = 'block';
         }
+    })
+
+    disableNav.addEventListener('click', () => {
+        if (document.getElementById('nav').style.left === '0px') {
+            menuburger.click();
+        }
+    });
+
+    entries.addEventListener('click', () => {
+        hideAll();
+        //   changeDisplayProperty('contentWrapperall', 'block');
+        //   changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('contentWrapper', 'block');
+        //   changeDisplayProperty('createbirthday', 'block')
+
+        //   menuburger.click();
+    })
+
+    login.addEventListener('click', () => {
+        hideAll();
+        //   changeDisplayProperty('contentWrapperall', 'block');
+        //   changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('signInWrapper', 'block');
+        //   changeDisplayProperty('createbirthday', 'block')
+
+        menuburger.click();
+    })
+
+    createaccount.addEventListener('click', () => {
+        hideAll();
+        //   changeDisplayProperty('contentWrapperall', 'block');
+        //   changeDisplayProperty('menuburgerWrapper', 'block');
+        changeDisplayProperty('signUpWrapper', 'block');
+        //   changeDisplayProperty('createbirthday', 'block')
+
+        menuburger.click();
+    })
+
+    createentries.addEventListener('click', () => {
+        hideAll();
+        //   changeDisplayProperty('contentWrapperall', 'block');
+        //   changeDisplayProperty('menuburgerWrapper', 'block');
+        //   changeDisplayProperty('signUpWrapper', 'block');
+        changeDisplayProperty('createbirthday', 'block')
+
+        menuburger.click();
+    })
+
+    function printEntries(data) {
+        const entries = [];
+        const entryWrapper = document.getElementById('entryWrapper');
+        const entriesvor = document.getElementById('entriesvor');
+
+        for (const index in data) {
+            entries.push(data[index]);
+        }
+
+        if (entries.length == '0') {
+            entriesvor.textContent = 'Keine Einträge verfügbar';
+        } else {
+            for (let i = 0; i < entries.length; i++) {
+                const newEntry = document.createElement('div');
+                const name = document.createElement('p');
+                const birthdate = document.createElement('p');
+
+                let date = new Date(entries[i].birthdate);
+                date = `${date.getDate()}. ${date.getMonth()+1}. ${date.getFullYear()}`
+                name.textContent = "Geburtstag: " + entries[i].name;
+                birthdate.textContent = "Datum: " + date;
+
+                newEntry.setAttribute('class', 'entry');
+
+                newEntry.appendChild(name);
+                newEntry.appendChild(birthdate);
+                entryWrapper.appendChild(newEntry);
+            }
+        }
+
+
     }
 
-    
-  }
+    addBirthDate.addEventListener("click", () => {
+        const birthdayName = document.getElementById("addBirthdayName");
+        const birthday = document.getElementById("addBirthday");
+        const key = new Date().getTime();
 
-  addBirthDate.addEventListener("click", () => {
-    const birthdayName = document.getElementById("addBirthdayName");
-    const birthday = document.getElementById("addBirthday");
-    const key = new Date().getTime();
+        // const name = document.getElementById('addBirthdayName');
+        const createbirthdayfeedback = document.getElementById('createbirthdayfeedback');
 
-    // const name = document.getElementById('addBirthdayName');
-    const createbirthdayfeedback = document.getElementById('createbirthdayfeedback');
-    
-    // startLoadingAnimation();
-    if(birthdayName.value ==='' || birthdayName.value === ' ') {
-        addBirthdayName.style.borderBottom = 'red 3px solid';
-        createbirthdayfeedback.textContent = 'Der Name des Geburtstagskind ist erwünscht.';  
-    } else {
-        addBirthdayName.style.borderBottom = 'lightgray 3px solid';
-        createbirthdayfeedback.textContent = '';
-        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/birthdates/${key}`).set({
-            name: birthdayName.value,
-            birthdate: birthday.value,
-            key: key
-        });
+        // startLoadingAnimation();
+        if (birthdayName.value === '' || birthdayName.value === ' ') {
+            addBirthdayName.style.borderBottom = 'red 3px solid';
+            createbirthdayfeedback.textContent = 'Der Name des Geburtstagskind ist erwünscht.';
+        } else {
+            addBirthdayName.style.borderBottom = 'lightgray 3px solid';
+            createbirthdayfeedback.textContent = '';
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/birthdates/${key}`).set({
+                name: birthdayName.value,
+                birthdate: birthday.value,
+                key: key
+            });
 
-    }
-    sitereload();
-    // position();
-  });
+        }
+        sitereload();
+
+        // position();
+    });
 })
 
 
 function validatePassword(password) {
-  return /[a-z]/.test(password.value) && /[A-Z]/.test(password.value) && /[0-9]/.test(password.value) && password.value.length > 5;
+    return /[a-z]/.test(password.value) && /[A-Z]/.test(password.value) && /[0-9]/.test(password.value) && password.value.length > 5;
 }
 
 function validateEmail(email) {
-  if (email.value.includes('@')) {
-      const splitEmail = email.value.split('@');
-      return splitEmail.length === 2 && splitEmail[1].split('.').length === 2 && splitEmail[1].split('.')[1].length >= 2 && splitEmail[1].split('.')[0].length >= 3;
-  } else {
-      return false;
-  }
+    if (email.value.includes('@')) {
+        const splitEmail = email.value.split('@');
+        return splitEmail.length === 2 && splitEmail[1].split('.').length === 2 && splitEmail[1].split('.')[1].length >= 2 && splitEmail[1].split('.')[0].length >= 3;
+    } else {
+        return false;
+    }
 }
 
 function changeDisplayProperty(id, property) {
@@ -541,11 +544,11 @@ function hideAll() {
         //   document.getElementById('menuburgerWrapper'),
         //   document.getElementById('disableNav'),
         //   document.getElementById('contentWrapperall'),
-          document.getElementById('signInWrapper'),
-          document.getElementById('signUpWrapper'),
-          document.getElementById('contentWrapper'),
-          document.getElementById('createbirthday')
-        ];
+        document.getElementById('signInWrapper'),
+        document.getElementById('signUpWrapper'),
+        document.getElementById('contentWrapper'),
+        document.getElementById('createbirthday')
+    ];
 
     for (const element of elements) {
         element.style.display = 'none';
