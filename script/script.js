@@ -118,7 +118,7 @@ window.addEventListener('load', () => {
         const pwInFeedback = document.getElementById('pwInFeedback');
         let isValid = true;
 
-        startLoadingAnimation();
+        // startLoadingAnimation();
 
         // Email validation
         if (email.value === '' || email.value === ' ') {
@@ -148,6 +148,14 @@ window.addEventListener('load', () => {
             pwInFeedback.textContent = '';
             password.classList.remove('errorInput');
         }
+
+        // if (isValid === true) {
+        //     const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value);
+
+        //     if()
+        // }
+
+
 
         if (isValid) {
             const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value);
@@ -242,7 +250,7 @@ window.addEventListener('load', () => {
         } else if (validatePassword(password)) {
             // password is valid
             pwUpFeedback.textContent = '';
-            password.classList.remove('errorInput');
+            // password.classList.remove('errorInput');
         } else {
             if (!/[a-z]/.test(password.value)) {
                 // no lower case letters
@@ -261,74 +269,76 @@ window.addEventListener('load', () => {
                 pwUpFeedback.textContent = 'Es ist ein unbekannter Fehler aufgetreten, versuchen Sie es später erneut.';
             }
 
-            password.classList.add('errorInput');
+            // password.classList.add('errorInput');
             isValid = false;
 
 
         }
 
-        if (isValid) {
-            const promise = firebase.auth().createUserWithEmailAndPassword(email.value, password.value);
-            promise.catch((error) => {
-                const errorMsg = error.message;
-                const messages = [
-                    { message: 'The password is invalid or the user does not have a password.', feedback: 'Das eingegebene Passwort ist ungültig.', affected: 'pw' },
-                    { message: 'Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later', feedback: 'Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.', affected: '' },
-                    { message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.', affected: 'em' },
-                    { message: 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.', feedback: 'Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.', affected: '' },
-                    { message: 'The email address is already in use by another account.', feedback: 'Die angebene E-Mail Adresse wird bereits verwendet.', affected: 'em' },
-                ];
+        
 
-                for (const msg of messages) {
-                    if (msg.message === errorMsg) {
-                        if (msg.affected === 'em') {
-                            emUpFeedback.textContent = msg.feedback;
-                            email.classList.add('errorInput');
-                        } else if (msg.affected === 'pw') {
-                            pwUpFeedback.textContent = msg.feedback;
-                            password.classList.add('errorInput');
-                        }
-                    }
-                }
-            });
+        // if (isValid) {
+        //     const promise = firebase.auth().createUserWithEmailAndPassword(email.value, password.value);
+        //     promise.catch((error) => {
+        //         const errorMsg = error.message;
+        //         const messages = [
+        //             { message: 'The password is invalid or the user does not have a password.', feedback: 'Das eingegebene Passwort ist ungültig.', affected: 'pw' },
+        //             { message: 'Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later', feedback: 'Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.', affected: '' },
+        //             { message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.', affected: 'em' },
+        //             { message: 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.', feedback: 'Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.', affected: '' },
+        //             { message: 'The email address is already in use by another account.', feedback: 'Die angebene E-Mail Adresse wird bereits verwendet.', affected: 'em' },
+        //         ];
 
-            promise.then(() => {
-                stopLoadingAnimation();
+        //         for (const msg of messages) {
+        //             if (msg.message === errorMsg) {
+        //                 if (msg.affected === 'em') {
+        //                     emUpFeedback.textContent = msg.feedback;
+        //                     email.classList.add('errorInput');
+        //                 } else if (msg.affected === 'pw') {
+        //                     pwUpFeedback.textContent = msg.feedback;
+        //                     password.classList.add('errorInput');
+        //                 }
+        //             }
+        //         }
+        //     });
 
-                sessionStorage.setItem('choseGoogle', false);
+        //     promise.then(() => {
+        //         stopLoadingAnimation();
 
-                firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
-                    email: firebase.auth().currentUser.email
-                });
-                hideAll();
-                changeDisplayProperty('menuburgerWrapper', 'block');
-                changeDisplayProperty('contentWrapper', 'block');
-            });
+        //         sessionStorage.setItem('choseGoogle', false);
+
+        //         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
+        //             email: firebase.auth().currentUser.email
+        //         });
+        //         hideAll();
+        //         changeDisplayProperty('menuburgerWrapper', 'block');
+        //         changeDisplayProperty('contentWrapper', 'block');
+        //     });
 
 
-        } else {
-            stopLoadingAnimation();
-        }
+        // } else {
+        //     stopLoadingAnimation();
+        // }
 
-        function startLoadingAnimation() {
-            const signUpBtnText = document.getElementById('signUpBtnText');
-            const signUploader = document.getElementById('signUploader');
+        // function startLoadingAnimation() {
+        //     const signUpBtnText = document.getElementById('signUpBtnText');
+        //     const signUploader = document.getElementById('signUploader');
 
-            signUpBtnText.style.opacity = 0;
-            signUploader.style.width = (signUpButton.clientWidth - 64) + 'px';
-            signUploader.style.height = (signUpButton.clientHeight - 64) + 'px';
-            signUpBtnText.style.position = 'absolute';
-            signUploader.classList.remove('hide');
-        }
+        //     signUpBtnText.style.opacity = 0;
+        //     signUploader.style.width = (signUpButton.clientWidth - 64) + 'px';
+        //     signUploader.style.height = (signUpButton.clientHeight - 64) + 'px';
+        //     signUpBtnText.style.position = 'absolute';
+        //     signUploader.classList.remove('hide');
+        // }
 
-        function stopLoadingAnimation() {
-            const signUpBtnText = document.getElementById('signUpBtnText');
-            const signUploader = document.getElementById('signUploader');
+        // function stopLoadingAnimation() {
+        //     const signUpBtnText = document.getElementById('signUpBtnText');
+        //     const signUploader = document.getElementById('signUploader');
 
-            signUploader.classList.add('hide');
-            signUpBtnText.style.position = 'relative';
-            signUpBtnText.style.opacity = 1;
-        }
+        //     signUploader.classList.add('hide');
+        //     signUpBtnText.style.position = 'relative';
+        //     signUpBtnText.style.opacity = 1;
+        // }
     });
 
     firebase.auth().onAuthStateChanged(function (user) {
@@ -464,15 +474,24 @@ window.addEventListener('load', () => {
         const entries = [];
         const entryWrapper = document.getElementById('entryWrapper');
         const entriesvor = document.getElementById('entriesvor');
+        
 
         for (const index in data) {
             entries.push(data[index]);
         }
 
+        let hoehe;
+        // console.log(entryWrapper.offsetHeight);
+        hoehe = (entries.length * 124.125) + 50;
+        entryWrapper.style.height += hoehe + 'px';
+
+
         if (entries.length == '0') {
             entriesvor.textContent = 'Keine Einträge verfügbar';
         } else {
             for (let i = 0; i < entries.length; i++) {
+
+                
                 const newEntry = document.createElement('div');
                 const name = document.createElement('p');
                 const birthdate = document.createElement('p');
@@ -487,7 +506,11 @@ window.addEventListener('load', () => {
                 newEntry.appendChild(name);
                 newEntry.appendChild(birthdate);
                 entryWrapper.appendChild(newEntry);
+
+                
             }
+            
+            
         }
 
 

@@ -12,9 +12,11 @@ body {
 }
 
 #menuburger {
-    position: absolute;
+    position: fixed;
     transition: left 500ms ease-in-out;
     left: 0;
+    background-color: white;
+    height: 10vh;
 }
 
 #menuburger p {
