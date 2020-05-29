@@ -156,90 +156,90 @@ window.addEventListener("load", () => {
     //     if()
     // }
 
-    if (isValid) {
-      const promise = firebase
-        .auth()
-        .signInWithEmailAndPassword(email.value, password.value);
-      promise.catch((error) => {
-        const errorMsg = error.message;
-        const messages = [
-          {
-            message:
-              "The password is invalid or the user does not have a password.",
-            feedback: "Das eingegebene Passwort ist ungültig.",
-            affected: "pw",
-          },
-          {
-            message:
-              "Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later",
-            feedback:
-              "Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.",
-            affected: "",
-          },
-          {
-            message:
-              "There is no user record corresponding to this identifier. The user may have been deleted.",
-            feedback:
-              "Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.",
-            affected: "em",
-          },
-          {
-            message:
-              "A network error (such as timeout, interrupted connection or unreachable host) has occurred.",
-            feedback:
-              "Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.",
-            affected: "",
-          },
-          {
-            message: "The email address is already in use by another account.",
-            feedback: "Die angebene E-Mail Adresse wird bereits verwendet.",
-            affected: "em",
-          },
-        ];
+    // if (isValid) {
+    //   const promise = firebase
+    //     .auth()
+    //     .signInWithEmailAndPassword(email.value, password.value);
+    //   promise.catch((error) => {
+    //     const errorMsg = error.message;
+    //     const messages = [
+    //       {
+    //         message:
+    //           "The password is invalid or the user does not have a password.",
+    //         feedback: "Das eingegebene Passwort ist ungültig.",
+    //         affected: "pw",
+    //       },
+    //       {
+    //         message:
+    //           "Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later",
+    //         feedback:
+    //           "Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.",
+    //         affected: "",
+    //       },
+    //       {
+    //         message:
+    //           "There is no user record corresponding to this identifier. The user may have been deleted.",
+    //         feedback:
+    //           "Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.",
+    //         affected: "em",
+    //       },
+    //       {
+    //         message:
+    //           "A network error (such as timeout, interrupted connection or unreachable host) has occurred.",
+    //         feedback:
+    //           "Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.",
+    //         affected: "",
+    //       },
+    //       {
+    //         message: "The email address is already in use by another account.",
+    //         feedback: "Die angebene E-Mail Adresse wird bereits verwendet.",
+    //         affected: "em",
+    //       },
+    //     ];
 
-        for (const msg of messages) {
-          if (msg.message === errorMsg) {
-            if (msg.affected === "em") {
-              emUpFeedback.textContent = msg.feedback;
-              email.classList.add("errorInput");
-            } else if (msg.affected === "pw") {
-              pwUpFeedback.textContent = msg.feedback;
-              password.classList.add("errorInput");
-            }
-          }
-        }
-      });
+    //     for (const msg of messages) {
+    //       if (msg.message === errorMsg) {
+    //         if (msg.affected === "em") {
+    //           emUpFeedback.textContent = msg.feedback;
+    //           email.classList.add("errorInput");
+    //         } else if (msg.affected === "pw") {
+    //           pwUpFeedback.textContent = msg.feedback;
+    //           password.classList.add("errorInput");
+    //         }
+    //       }
+    //     }
+    //   });
 
-      promise.then(() => {
-        stopLoadingAnimation();
-        sessionStorage.setItem("choseGoogle", true);
-        hideAll();
-        changeDisplayProperty("menuburgerWrapper", "block");
-        changeDisplayProperty("contentWrapper", "block");
-      });
-    } else {
-      stopLoadingAnimation();
-    }
+    //   promise.then(() => {
+    //     stopLoadingAnimation();
+    //     sessionStorage.setItem("choseGoogle", true);
+    //     hideAll();
+    //     changeDisplayProperty("menuburgerWrapper", "block");
+    //     changeDisplayProperty("contentWrapper", "block");
+    //   });
+    // } else {
+    //   stopLoadingAnimation();
+    // }
 
-    function startLoadingAnimation() {
-      const signInBtnText = document.getElementById("signInBtnText");
-      const signInloader = document.getElementById("signInloader");
+    // function startLoadingAnimation() {
+    //   const signInBtnText = document.getElementById("signInBtnText");
+    //   const signInloader = document.getElementById("signInloader");
 
-      signInBtnText.style.opacity = 0;
-      signInloader.style.width = signInButton.clientWidth - 64 + "px";
-      signInloader.style.height = signInButton.clientHeight - 64 + "px";
-      signInBtnText.style.position = "absolute";
-      signInloader.classList.remove("hide");
-    }
+    //   signInBtnText.style.opacity = 0;
+    //   signInloader.style.width = signInButton.clientWidth - 64 + "px";
+    //   signInloader.style.height = signInButton.clientHeight - 64 + "px";
+    //   signInBtnText.style.position = "absolute";
+    //   signInloader.classList.remove("hide");
+    // }
 
-    function stopLoadingAnimation() {
-      const signInBtnText = document.getElementById("signInBtnText");
-      const signInloader = document.getElementById("signInloader");
+    // function stopLoadingAnimation() {
+    //   const signInBtnText = document.getElementById("signInBtnText");
+    //   const signInloader = document.getElementById("signInloader");
 
-      signInloader.classList.add("hide");
-      signInBtnText.style.position = "relative";
-      signInBtnText.style.opacity = 1;
-    }
+    //   signInloader.classList.add("hide");
+    //   signInBtnText.style.position = "relative";
+    //   signInBtnText.style.opacity = 1;
+    // }
   });
 
   signUpButton.addEventListener("click", () => {
@@ -249,7 +249,7 @@ window.addEventListener("load", () => {
     const pwUpFeedback = document.getElementById("pwUpFeedback");
     let isValid = true;
 
-    startLoadingAnimation();
+    // startLoadingAnimation();
 
     // Email validation
     if (email.value === "" || email.value === " ") {
