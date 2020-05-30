@@ -179,3 +179,7 @@ input:focus {
   justify-content: center;
   flex-direction: column;
 }
+
+#statusLogIn, #statusSignUp {
+  font-size: 35px;
+}

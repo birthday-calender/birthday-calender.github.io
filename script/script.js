@@ -367,7 +367,9 @@ window.addEventListener("load", () => {
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      statusOutput.textContent = "eingeloggt";
+      // statusOutput.textContent = "eingeloggt";
+      statusLogIn.style.display = "block";
+      statusSignUp.style.display = "none";
       userIcon.style.display = "none";
       signOut.style.display = "block";
       entryWrapper.textContent = "";
@@ -377,7 +379,9 @@ window.addEventListener("load", () => {
       eingeloggtStatusCreate.style.color = "black";
       // User is signed in.
     } else {
-      statusOutput.textContent = "ausgeloggt";
+      // statusOutput.textContent = "ausgeloggt";
+      statusLogIn.style.display = "none";
+      statusSignUp.style.display = "block";
       signOut.style.display = "none";
       userIcon.style.display = "block";
       entryWrapper.textContent = "Sie sind nicht eingeloggt.";
@@ -473,25 +477,25 @@ window.addEventListener("load", () => {
     //   menuburger.click();
   });
 
-  login.addEventListener("click", () => {
-    hideAll();
-    //   changeDisplayProperty('contentWrapperall', 'block');
-    //   changeDisplayProperty('menuburgerWrapper', 'block');
-    changeDisplayProperty("signInWrapper", "block");
-    //   changeDisplayProperty('createbirthday', 'block')
+  // login.addEventListener("click", () => {
+  //   hideAll();
+  //   //   changeDisplayProperty('contentWrapperall', 'block');
+  //   //   changeDisplayProperty('menuburgerWrapper', 'block');
+  //   changeDisplayProperty("signInWrapper", "block");
+  //   //   changeDisplayProperty('createbirthday', 'block')
 
-    menuburger.click();
-  });
+  //   menuburger.click();
+  // });
 
-  createaccount.addEventListener("click", () => {
-    hideAll();
-    //   changeDisplayProperty('contentWrapperall', 'block');
-    //   changeDisplayProperty('menuburgerWrapper', 'block');
-    changeDisplayProperty("signUpWrapper", "block");
-    //   changeDisplayProperty('createbirthday', 'block')
+  // createaccount.addEventListener("click", () => {
+  //   hideAll();
+  //   //   changeDisplayProperty('contentWrapperall', 'block');
+  //   //   changeDisplayProperty('menuburgerWrapper', 'block');
+  //   changeDisplayProperty("signUpWrapper", "block");
+  //   //   changeDisplayProperty('createbirthday', 'block')
 
-    menuburger.click();
-  });
+  //   menuburger.click();
+  // });
 
   createentries.addEventListener("click", () => {
     hideAll();
