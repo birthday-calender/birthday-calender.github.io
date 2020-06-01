@@ -97,20 +97,23 @@ window.addEventListener("load", () => {
     changeDisplayProperty("createbirthday", "block");
   });
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      firebase
-        .database()
-        .ref(`users/${firebase.auth().currentUser.uid}/birthdates`)
-        .once("value")
-        .then((snapshot) => {
-          // console.table(snapshot.val());
-          printEntries(snapshot.val());
-        });
+  // firebase.auth().onAuthStateChanged((user) => {
+  //   if (user) {
+  //     firebase
+  //       .database()
+  //       .ref(`users/${firebase.auth().currentUser.uid}/birthdates`)
+  //       .once("value")
+  //       .then((snapshot) => {
+  //         // console.table(snapshot.val());
+  //         // printEntries(snapshot.val());
+  //         // let sort = document.querySelector('#sortSelect').value;
+  //         printEntries(snapshot.val());
+          
+  //       });
 
-      //   printEntries(user.uid);
-    }
-  });
+  //       // printEntries(user.uid);
+  //   }
+  // });
 
   signInButton.addEventListener("click", () => {
     const email = document.getElementById("emailIn");
@@ -497,6 +500,7 @@ window.addEventListener("load", () => {
   //   menuburger.click();
   // });
 
+
   createentries.addEventListener("click", () => {
     hideAll();
     //   changeDisplayProperty('contentWrapperall', 'block');
@@ -507,14 +511,112 @@ window.addEventListener("load", () => {
     menuburger.click();
   });
 
+  let whSort = document.querySelector('#sortSelect').value;
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      firebase
+        .database()
+        .ref(`users/${firebase.auth().currentUser.uid}/birthdates`)
+        .once("value")
+        .then((snapshot) => {
+          // console.table(snapshot.val());
+          // printEntries(snapshot.val());
+          let sort = document.querySelector('#sortSelect').value;
+          printEntries(snapshot.val(), whSort);
+          
+        });
+
+        // printEntries(user.uid);
+    }
+  });
+
+  document.querySelector("#sortSelect").onchange = function () {
+    whSort = document.querySelector("#sortSelect").value;
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        firebase
+          .database()
+          .ref(`users/${firebase.auth().currentUser.uid}/birthdates`)
+          .once("value")
+          .then((snapshot) => {
+            // console.table(snapshot.val());
+            // printEntries(snapshot.val());
+            let sort = document.querySelector('#sortSelect').value;
+            printEntries(snapshot.val(), whSort);
+            
+          });
+  
+          // printEntries(user.uid);
+      }
+    });
+  }
+  
   function printEntries(data) {
     const entries = [];
     const entryWrapper = document.getElementById("entryWrapper");
     const entriesvor = document.getElementById("entriesvor");
 
+    entryWrapper.textContent = "";
     for (const index in data) {
       entries.push(data[index]);
     }
+
+    if (whSort === 'old') {
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = i; j < entries.length; j++) {
+          if (new Date(entries[i].birthdate).getTime() > new Date(entries[j].birthdate).getTime()) {
+            let rack = entries[i];
+            entries[i] = entries[j];
+            entries[j] = rack;
+          }
+        }
+      }
+    } else if (whSort === 'young') {
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = i; j < entries.length; j++) {
+          if (new Date(entries[i].birthdate).getTime() < new Date(entries[j].birthdate).getTime()) {
+            let rack = entries[i];
+            entries[i] = entries[j];
+            entries[j] = rack;
+          }
+        }
+      }
+    } 
+    // else if (whSort === 'start') {
+    //   for (let i = 0; i < entries.length; i++) {
+    //     for (let j = i; j < entries.length; j++) {
+    //       if (new Date(entries[i].birthdate).getMonth() > new Date(entries[j].birthdate).getMonth()) {      
+    //         let rack = entries[i];
+    //           entries[i] = entries[j];
+    //           entries[j] = rack;
+    //           if (new Date(entries[i].birthdate).getDate() > new Date(entries[j].birthdate).getDate()) {
+    //             let rack = entries[i];
+    //             entries[i] = entries[j];
+    //             entries[j] = rack;
+    //           }
+    //       }
+          
+    //     }
+    //   }
+    // } 
+    // else if (whSort === 'end') {
+    //   for (let i = 0; i < entries.length; i++) {
+    //     for (let j = i; j < entries.length; j++) {
+    //       if (new Date(entries[i].birthdate).getMonth() < new Date(entries[j].birthdate).getMonth()) {
+    //         let rack = entries[i];
+    //           entries[i] = entries[j];
+    //           entries[j] = rack;
+    //           if (new Date(entries[i].birthdate).getDate() < new Date(entries[j].birthdate).getDate()) {
+    //             let rack2 = entries[i];
+    //             entries[i] = entries[j];
+    //             entries[j] = rack2;
+    //           }
+    //       }
+          
+    //     }
+    //   }
+    //   console.table(entries);
+    // }
 
     if (entries.length == "0") {
       entriesvor.textContent = "Keine Einträge verfügbar";
@@ -536,7 +638,7 @@ window.addEventListener("load", () => {
         newEntry.appendChild(name);
         newEntry.appendChild(birthdate);
         entryWrapper.appendChild(newEntry);
-      }
+      }      
     }
   }
 

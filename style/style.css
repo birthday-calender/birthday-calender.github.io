@@ -135,7 +135,7 @@ input:focus {
 #entryWrapper {
   width: 100%;
   min-height: 0vh;
-  margin: 11vh 0 13vh 0;
+  margin: 1vh 0 13vh 0;
 
 }
 
@@ -169,6 +169,15 @@ input:focus {
 .entry p {
   margin: 5px;
   padding: 0;
+}
+
+#sort {
+  display: flex;
+  /* background-color: lightblue; */
+  margin-top: 11vh;
+  /* width: 70vw; */
+  height: 5vh;
+  /* position: sticky; */
 }
 
 #createbirthday {
