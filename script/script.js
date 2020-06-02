@@ -582,41 +582,38 @@ window.addEventListener("load", () => {
         }
       }
     } 
-    // else if (whSort === 'start') {
-    //   for (let i = 0; i < entries.length; i++) {
-    //     for (let j = i; j < entries.length; j++) {
-    //       if (new Date(entries[i].birthdate).getMonth() > new Date(entries[j].birthdate).getMonth()) {      
-    //         let rack = entries[i];
-    //           entries[i] = entries[j];
-    //           entries[j] = rack;
-    //           if (new Date(entries[i].birthdate).getDate() > new Date(entries[j].birthdate).getDate()) {
-    //             let rack = entries[i];
-    //             entries[i] = entries[j];
-    //             entries[j] = rack;
-    //           }
-    //       }
-          
-    //     }
-    //   }
-    // } 
-    // else if (whSort === 'end') {
-    //   for (let i = 0; i < entries.length; i++) {
-    //     for (let j = i; j < entries.length; j++) {
-    //       if (new Date(entries[i].birthdate).getMonth() < new Date(entries[j].birthdate).getMonth()) {
-    //         let rack = entries[i];
-    //           entries[i] = entries[j];
-    //           entries[j] = rack;
-    //           if (new Date(entries[i].birthdate).getDate() < new Date(entries[j].birthdate).getDate()) {
-    //             let rack2 = entries[i];
-    //             entries[i] = entries[j];
-    //             entries[j] = rack2;
-    //           }
-    //       }
-          
-    //     }
-    //   }
-    //   console.table(entries);
-    // }
+    else if (whSort === 'start') {
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = i; j < entries.length; j++) {
+          if (new Date(entries[i].birthdate).getDate() > new Date(entries[j].birthdate).getDate()) {
+            let rack = entries[i];
+            entries[i] = entries[j];
+            entries[j] = rack;
+          }
+          if (new Date(entries[i].birthdate).getMonth() > new Date(entries[j].birthdate).getMonth()) {      
+            let rack = entries[i];
+            entries[i] = entries[j];
+            entries[j] = rack;
+          }
+        }
+      }
+    } 
+    else if (whSort === 'end') {
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = i; j < entries.length; j++) {
+          if (new Date(entries[i].birthdate).getDate() < new Date(entries[j].birthdate).getDate()) {
+            let rack = entries[i];
+            entries[i] = entries[j];
+            entries[j] = rack;
+          }
+          if (new Date(entries[i].birthdate).getMonth() < new Date(entries[j].birthdate).getMonth()) {
+            let rack = entries[i];
+              entries[i] = entries[j];
+              entries[j] = rack;              
+          }          
+        }
+      }
+    }
 
     if (entries.length == "0") {
       entriesvor.textContent = "Keine Einträge verfügbar";
