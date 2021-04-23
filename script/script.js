@@ -108,7 +108,7 @@ window.addEventListener("load", () => {
   //         // printEntries(snapshot.val());
   //         // let sort = document.querySelector('#sortSelect').value;
   //         printEntries(snapshot.val());
-          
+
   //       });
 
   //       // printEntries(user.uid);
@@ -122,6 +122,9 @@ window.addEventListener("load", () => {
     const pwInFeedback = document.getElementById("pwInFeedback");
     let isValid = true;
 
+    // emInFeedback.textContent = "";
+    // pwInFeedback.textContent = "";
+
     // startLoadingAnimation();
 
     // Email validation
@@ -129,15 +132,15 @@ window.addEventListener("load", () => {
       // email value is empty
       emInFeedback.textContent = "Bitte geben Sie eine E-Mail Adresse ein.";
       isValid = false;
-      email.classList.add("errorInput");
+      // email.classList.add("errorInput");
     } else if (validateEmail(email)) {
       // email is valid
       emInFeedback.textContent = "";
-      email.classList.remove("errorInput");
+      // email.classList.remove("errorInput");
     } else {
       // email is invalid
       emInFeedback.textContent = "Ungültige E-Mail Adresse.";
-      email.classList.add("errorInput");
+      // email.classList.add("errorInput");
 
       isValid = false;
     }
@@ -146,82 +149,56 @@ window.addEventListener("load", () => {
       // password value is empty
       pwInFeedback.textContent = "Bitte geben Sie ein Passwort ein.";
       isValid = false;
-      password.classList.add("errorInput");
+      // password.classList.add("errorInput");
     } else {
       // password is valid
       pwInFeedback.textContent = "";
-      password.classList.remove("errorInput");
+      // password.classList.remove("errorInput");
     }
 
-    if (isValid === true) {
-        const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value);
+    // if (isValid === true) {
+    //     const promise = firebase.auth().signInWithEmailAndPassword(email.value, password.value);
 
-        // if()
-    }
+    //     // if()
+    // }
 
     if (isValid) {
       const promise = firebase
         .auth()
         .signInWithEmailAndPassword(email.value, password.value);
-      promise.catch((error) => {
-        const errorMsg = error.message;
-        const messages = [
-          {
-            message:
-              "The password is invalid or the user does not have a password.",
-            feedback: "Das eingegebene Passwort ist ungültig.",
-            affected: "pw",
-          },
-          {
-            message:
-              "Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later",
-            feedback:
-              "Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.",
-            affected: "",
-          },
-          {
-            message:
-              "There is no user record corresponding to this identifier. The user may have been deleted.",
-            feedback:
-              "Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.",
-            affected: "em",
-          },
-          {
-            message:
-              "A network error (such as timeout, interrupted connection or unreachable host) has occurred.",
-            feedback:
-              "Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.",
-            affected: "",
-          },
-          {
-            message: "The email address is already in use by another account.",
-            feedback: "Die angebene E-Mail Adresse wird bereits verwendet.",
-            affected: "em",
-          },
+        promise.catch((error) => {
+          const errorMsg = error.message;
+          const messages = [
+            {message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Die eingegebene Email-Adresse wurde nicht gefunden', affected: 'em'},
+            {message: 'The password is invalid or the user does not have a password.', feedback: 'Das eingegebene Passwort ist ungültig.', affected: 'pw'},
+            {message: 'Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later', feedback: 'Der Anmelde Vorgang ist zu oft fehlgeschlagen, versuchen Sie es später ernuet.', affected: ''},
+            {message: 'There is no user record corresponding to this identifier. The user may have been deleted.', feedback: 'Es wurde keine Account mit der eingegebenen E-Mail Adresse gefunden.', affected: 'em'},
+            {message: 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.', feedback: 'Zeitüberschreitung beim Anmelden. Versuche Sie es später erneut.', affected: ''},
+            {message: 'The email address is already in use by another account.', feedback: 'Die angebene E-Mail Adresse wird bereits verwendet.', affected: 'em'},
         ];
 
         for (const msg of messages) {
           if (msg.message === errorMsg) {
             if (msg.affected === "em") {
-              emUpFeedback.textContent = msg.feedback;
-              email.classList.add("errorInput");
+              emInFeedback.textContent = msg.feedback;
+              // email.classList.add("errorInput");
             } else if (msg.affected === "pw") {
-              pwUpFeedback.textContent = msg.feedback;
-              password.classList.add("errorInput");
+              pwInFeedback.textContent = msg.feedback;
+              // password.classList.add("errorInput");
             }
           }
         }
       });
 
       promise.then(() => {
-        stopLoadingAnimation();
-        sessionStorage.setItem("choseGoogle", true);
+        // stopLoadingAnimation();
+        // sessionStorage.setItem("choseGoogle", true);
         hideAll();
         changeDisplayProperty("menuburgerWrapper", "block");
         changeDisplayProperty("contentWrapper", "block");
       });
     } else {
-      stopLoadingAnimation();
+      // stopLoadingAnimation();
     }
 
     function startLoadingAnimation() {
@@ -232,7 +209,7 @@ window.addEventListener("load", () => {
       signInloader.style.width = signInButton.clientWidth - 64 + "px";
       signInloader.style.height = signInButton.clientHeight - 64 + "px";
       signInBtnText.style.position = "absolute";
-      signInloader.classList.remove("hide");
+      // signInloader.classList.remove("hide");
     }
 
     function stopLoadingAnimation() {
@@ -259,15 +236,15 @@ window.addEventListener("load", () => {
       // email value is empty
       emUpFeedback.textContent = "Bitte geben Sie eine E-Mail Adresse ein.";
       isValid = false;
-      email.classList.add("errorInput");
+      // email.classList.add("errorInput");
     } else if (validateEmail(email)) {
       // email is valid
       emUpFeedback.textContent = "";
-      email.classList.remove("errorInput");
+      // email.classList.remove("errorInput");
     } else {
       // email is invalid
       emUpFeedback.textContent = "Ungültige E-Mail Adresse.";
-      email.classList.add("errorInput");
+      // email.classList.add("errorInput");
 
       isValid = false;
     }
@@ -276,7 +253,7 @@ window.addEventListener("load", () => {
       // password value is empty
       pwUpFeedback.textContent = "Bitte geben Sie ein Passwort ein.";
       isValid = false;
-      password.classList.add("errorInput");
+      // password.classList.add("errorInput");
     } else if (validatePassword(password)) {
       // password is valid
       pwUpFeedback.textContent = "";
@@ -320,11 +297,11 @@ window.addEventListener("load", () => {
             for (const msg of messages) {
                 if (msg.message === errorMsg) {
                     if (msg.affected === 'em') {
-                        emUpFeedback.textContent = msg.feedback;
-                        email.classList.add('errorInput');
+                        emIpFeedback.textContent = msg.feedback;
+                        // email.classList.add('errorInput');
                     } else if (msg.affected === 'pw') {
-                        pwUpFeedback.textContent = msg.feedback;
-                        password.classList.add('errorInput');
+                        pwIpFeedback.textContent = msg.feedback;
+                        // password.classList.add('errorInput');
                     }
                 }
             }
@@ -333,7 +310,7 @@ window.addEventListener("load", () => {
         promise.then(() => {
             stopLoadingAnimation();
 
-            sessionStorage.setItem('choseGoogle', false);
+            // sessionStorage.setItem('choseGoogle', false);
 
             firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
                 email: firebase.auth().currentUser.email
@@ -344,28 +321,28 @@ window.addEventListener("load", () => {
         });
 
     } else {
-        stopLoadingAnimation();
+        // stopLoadingAnimation();
     }
 
-    function startLoadingAnimation() {
-        const signUpBtnText = document.getElementById('signUpBtnText');
-        const signUploader = document.getElementById('signUploader');
+    // function startLoadingAnimation() {
+    //     const signUpBtnText = document.getElementById('signUpBtnText');
+    //     const signUploader = document.getElementById('signUploader');
 
-        signUpBtnText.style.opacity = 0;
-        signUploader.style.width = (signUpButton.clientWidth - 64) + 'px';
-        signUploader.style.height = (signUpButton.clientHeight - 64) + 'px';
-        signUpBtnText.style.position = 'absolute';
-        signUploader.classList.remove('hide');
-    }
+    //     signUpBtnText.style.opacity = 0;
+    //     signUploader.style.width = (signUpButton.clientWidth - 64) + 'px';
+    //     signUploader.style.height = (signUpButton.clientHeight - 64) + 'px';
+    //     signUpBtnText.style.position = 'absolute';
+    //     signUploader.classList.remove('hide');
+    // }
 
-    function stopLoadingAnimation() {
-        const signUpBtnText = document.getElementById('signUpBtnText');
-        const signUploader = document.getElementById('signUploader');
+    // function stopLoadingAnimation() {
+    //     const signUpBtnText = document.getElementById('signUpBtnText');
+    //     const signUploader = document.getElementById('signUploader');
 
-        signUploader.classList.add('hide');
-        signUpBtnText.style.position = 'relative';
-        signUpBtnText.style.opacity = 1;
-    }
+    //     signUploader.classList.add('hide');
+    //     signUpBtnText.style.position = 'relative';
+    //     signUpBtnText.style.opacity = 1;
+    // }
   });
 
   firebase.auth().onAuthStateChanged(function (user) {
@@ -395,51 +372,51 @@ window.addEventListener("load", () => {
     }
   });
 
-  function clearSignUp() {
-    const inputs = [
-      document.getElementById("emailUp"),
-      document.getElementById("usernameUp"),
-      document.getElementById("passwordUp"),
-    ];
+  // function clearSignUp() {
+  //   const inputs = [
+  //     document.getElementById("emailUp"),
+  //     document.getElementById("usernameUp"),
+  //     document.getElementById("passwordUp"),
+  //   ];
 
-    const feedbacks = [
-      document.getElementById("emUpFeedback"),
-      document.getElementById("unUpFeedback"),
-      document.getElementById("pwUpFeedback"),
-    ];
+  //   const feedbacks = [
+  //     document.getElementById("emUpFeedback"),
+  //     document.getElementById("unUpFeedback"),
+  //     document.getElementById("pwUpFeedback"),
+  //   ];
 
-    for (const input of inputs) {
-      input.value = "";
-    }
+  //   for (const input of inputs) {
+  //     input.value = "";
+  //   }
 
-    input.classList.remove("errorInput");
+  //   input.classList.remove("errorInput");
 
-    for (const feedback of feedbacks) {
-      feedback.textContent = "";
-    }
-  }
+  //   for (const feedback of feedbacks) {
+  //     feedback.textContent = "";
+  //   }
+  // }
 
-  function clearSignIn() {
-    const inputs = [
-      document.getElementById("emailIn"),
-      document.getElementById("passwordIn"),
-    ];
+  // function clearSignIn() {
+  //   const inputs = [
+  //     document.getElementById("emailIn"),
+  //     document.getElementById("passwordIn"),
+  //   ];
 
-    const feedbacks = [
-      document.getElementById("emInFeedback"),
-      document.getElementById("pwInFeedback"),
-    ];
+  //   const feedbacks = [
+  //     document.getElementById("emInFeedback"),
+  //     document.getElementById("pwInFeedback"),
+  //   ];
 
-    for (const input of inputs) {
-      input.value = "";
+  //   for (const input of inputs) {
+  //     input.value = "";
 
-      input.classList.remove("errorInput");
-    }
+  //     input.classList.remove("errorInput");
+  //   }
 
-    for (const feedback of feedbacks) {
-      feedback.textContent = "";
-    }
-  }
+  //   for (const feedback of feedbacks) {
+  //     feedback.textContent = "";
+  //   }
+  // }
 
   menuburger.addEventListener("click", () => {
     const b1 = document.getElementById("burger1");
@@ -523,7 +500,7 @@ window.addEventListener("load", () => {
           // printEntries(snapshot.val());
           let sort = document.querySelector('#sortSelect').value;
           printEntries(snapshot.val(), whSort);
-          
+
         });
 
         // printEntries(user.uid);
@@ -541,16 +518,16 @@ window.addEventListener("load", () => {
           .then((snapshot) => {
             // console.table(snapshot.val());
             // printEntries(snapshot.val());
-            let sort = document.querySelector('#sortSelect').value;
-            printEntries(snapshot.val(), whSort);
-            
+            // let sort = document.querySelector('#sortSelect').value;
+            printEntries(snapshot.val());
+
           });
-  
+
           // printEntries(user.uid);
       }
     });
   }
-  
+
   function printEntries(data) {
     const entries = [];
     const entryWrapper = document.getElementById("entryWrapper");
@@ -562,80 +539,93 @@ window.addEventListener("load", () => {
     }
 
     if (whSort === 'old') {
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = i; j < entries.length; j++) {
-          if (new Date(entries[i].birthdate).getTime() > new Date(entries[j].birthdate).getTime()) {
-            let rack = entries[i];
-            entries[i] = entries[j];
-            entries[j] = rack;
-          }
-        }
-      }
+      sortByFullAgeDesc(entries);
     } else if (whSort === 'young') {
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = i; j < entries.length; j++) {
-          if (new Date(entries[i].birthdate).getTime() < new Date(entries[j].birthdate).getTime()) {
-            let rack = entries[i];
-            entries[i] = entries[j];
-            entries[j] = rack;
-          }
+      sortByFullAgeAsc(entries);
+    } else if (whSort === 'start') {
+      sortByAgeDesc(entries);
+    } else if (whSort === 'end') {
+      sortByAgeAsc(entries);
+    } else if (whSort === 'next') {
+      sortByAgeDesc(entries);
+
+      let length = entries.length;
+      let j = null;
+
+      for (let i = 0; i != null; i++) {
+        if (new Date().getTime() > new Date(entries[i].birthdate).getTime()) {
+          length = entries.length;
+          entries[i] = entries[length + 1];
+          // entries[i] = null;
+          // console.error('Hallo');
+          j = null;
+        } else {
+          j = true;
         }
       }
-    } 
-    else if (whSort === 'start') {
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = i; j < entries.length; j++) {
-          if (new Date(entries[i].birthdate).getDate() > new Date(entries[j].birthdate).getDate()) {
-            let rack = entries[i];
-            entries[i] = entries[j];
-            entries[j] = rack;
-          }
-          if (new Date(entries[i].birthdate).getMonth() > new Date(entries[j].birthdate).getMonth()) {      
-            let rack = entries[i];
-            entries[i] = entries[j];
-            entries[j] = rack;
-          }
-        }
-      }
-    } 
-    else if (whSort === 'end') {
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = i; j < entries.length; j++) {
-          if (new Date(entries[i].birthdate).getDate() < new Date(entries[j].birthdate).getDate()) {
-            let rack = entries[i];
-            entries[i] = entries[j];
-            entries[j] = rack;
-          }
-          if (new Date(entries[i].birthdate).getMonth() < new Date(entries[j].birthdate).getMonth()) {
-            let rack = entries[i];
-              entries[i] = entries[j];
-              entries[j] = rack;              
-          }          
-        }
-      }
+
+      // let length = entries.length;
+
+      // for (let i = 0; i < entries.length; i++) {
+      //   for (let j = 0; j < entries.length; j++) {
+      //     if (new Date().getDate() < new Date(entries[i].birthdate).getDate()) {
+      //       length = entries.length;
+
+      //       entries[i] = entries[length+1];
+      //       // entries[i] = null;
+
+      //     }
+      //     if (new Date().getDate() < new Date(entries[i].birthdate).getMonth()) {
+      //       length = entries.length;
+
+      //       entries[i] = entries[length+1];
+      //       entries[i].birthdate = null;
+      //       if (entries[i] = entries[length+1]);
+      //       // for (let j = 0; i < entries.length; i++) {
+
+      //       //   entries[j] =
+      //       // }
+      //       // let rack = entries[i];
+      //       // entries[i] = entries[i+1]
+
+      //     }
+      //     if (new Date().getMonth()+1 < new Date(entries[i].birthdate).getMonth()) {
+      //       let length = entries.length;
+      //       if (entries[i] = entries[length+1]);
+
+      //     }
+      //   }
+      // }
     }
+
+    console.table(entries);
+
+    // console.log(new Date().getDate());
+
 
     if (entries.length == "0") {
       entriesvor.textContent = "Keine Einträge verfügbar";
     } else {
       for (let i = 0; i < entries.length; i++) {
-        const newEntry = document.createElement("div");
-        const name = document.createElement("p");
-        const birthdate = document.createElement("p");
+        if (entries[i] != null) {
+          const newEntry = document.createElement("div");
+          const name = document.createElement("p");
+          const birthdate = document.createElement("p");
 
-        let date = new Date(entries[i].birthdate);
-        date = `${date.getDate()}. ${
-          date.getMonth() + 1
-        }. ${date.getFullYear()}`;
-        name.textContent = "Geburtstag: " + entries[i].name;
-        birthdate.textContent = "Datum: " + date;
+          let date = new Date(entries[i].birthdate);
+          date = `${date.getDate()}. ${
+            date.getMonth() + 1
+          }. ${date.getFullYear()}`;
+          name.textContent = "Geburtstag: " + entries[i].name;
+          birthdate.textContent = "Datum: " + date;
 
-        newEntry.setAttribute("class", "entry");
+          newEntry.setAttribute("class", "entry");
 
-        newEntry.appendChild(name);
-        newEntry.appendChild(birthdate);
-        entryWrapper.appendChild(newEntry);
-      }      
+          newEntry.appendChild(name);
+          newEntry.appendChild(birthdate);
+          entryWrapper.appendChild(newEntry);
+        }
+      }
     }
   }
 
@@ -765,3 +755,61 @@ function sitereload() {
 //         alert('Hallo');
 //     }
 // }
+
+function sortByFullAgeDesc(entries) {
+  for (let i = 0; i < entries.length; i++) {
+    for (let j = i; j < entries.length; j++) {
+      if (new Date(entries[i].birthdate).getTime() > new Date(entries[j].birthdate).getTime()) {
+        let rack = entries[i];
+        entries[i] = entries[j];
+        entries[j] = rack;
+      }
+    }
+  }
+}
+
+function sortByFullAgeAsc(entries) {
+  for (let i = 0; i < entries.length; i++) {
+    for (let j = i; j < entries.length; j++) {
+      if (new Date(entries[i].birthdate).getTime() < new Date(entries[j].birthdate).getTime()) {
+        let rack = entries[i];
+        entries[i] = entries[j];
+        entries[j] = rack;
+      }
+    }
+  }
+}
+
+function sortByAgeDesc(entries) {
+  for (let i = 0; i < entries.length; i++) {
+    for (let j = i; j < entries.length; j++) {
+      if (new Date(entries[i].birthdate).getDate() > new Date(entries[j].birthdate).getDate()) {
+        let rack = entries[i];
+        entries[i] = entries[j];
+        entries[j] = rack;
+      }
+      if (new Date(entries[i].birthdate).getMonth()+1 > new Date(entries[j].birthdate).getMonth()+1) {
+        let rack = entries[i];
+        entries[i] = entries[j];
+        entries[j] = rack;
+      }
+    }
+  }
+}
+
+function sortByAgeAsc(entries) {
+  for (let i = 0; i < entries.length; i++) {
+    for (let j = i; j < entries.length; j++) {
+      if (new Date(entries[i].birthdate).getDate() < new Date(entries[j].birthdate).getDate()) {
+        let rack = entries[i];
+        entries[i] = entries[j];
+        entries[j] = rack;
+      }
+      if (new Date(entries[i].birthdate).getMonth()+1 < new Date(entries[j].birthdate).getMonth()+1) {
+        let rack = entries[i];
+          entries[i] = entries[j];
+          entries[j] = rack;
+      }
+    }
+  }
+}
